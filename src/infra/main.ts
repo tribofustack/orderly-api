@@ -7,10 +7,10 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
 
-  const configService = app.get(ConfigService);
-  const SERVER_PORT = configService.get('SERVER_PORT');
+  const config = app.get(ConfigService);
+  const PORT = config.get('SERVER_PORT');
 
-  return app.listen(SERVER_PORT || 8080);
+  return app.listen(PORT || 8080);
 };
 
 bootstrap();

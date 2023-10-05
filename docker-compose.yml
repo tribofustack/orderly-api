@@ -1,15 +1,25 @@
 version: "3.9"
 
 services:
-  study-guide-db:
+  orderly-db:
     image: postgres
-    container_name: study-guide-postgres
+    container_name: orderly-postgres
     environment:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: docker
-      POSTGRES_DB: study-guide
+      POSTGRES_DB: orderly
       PGDATA: /data/postgres
     ports:
       - 5432:5432
     volumes:
       - ./data/pg:/data/postgres
+  orderly-server:
+    build: .
+    command: npm run start:dev
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8080
+      - 9229:9229
+    depends_on:
+      - orderly-db
