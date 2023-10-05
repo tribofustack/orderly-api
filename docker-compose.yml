@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  study-guide-db:
+    image: postgres
+    container_name: study-guide-postgres
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: study-guide
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/pg:/data/postgres
