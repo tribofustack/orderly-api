@@ -1,25 +1,25 @@
-version: "3.9"
+version: '3'
 
 services:
-  orderly-db:
-    image: postgres
-    container_name: orderly-postgres
-    environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: orderly
-      PGDATA: /data/postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - ./data/pg:/data/postgres
-  orderly-server:
+  nestjs-app:
     build: .
-    command: npm run start:dev
+    ports:
+      - "3000:3000"
     volumes:
       - .:/usr/src/app
-    ports:
-      - 8080:8080
-      - 9229:9229
+      - /usr/src/app/node_modules
+    env_file:
+      - .env.production
     depends_on:
-      - orderly-db
+      - dbpostgres
+
+  dbpostgres:
+    image: "postgres:latest"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    env_file:
+      - .env.production
