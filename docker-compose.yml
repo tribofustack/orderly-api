@@ -1,25 +1,54 @@
-version: "3.9"
+version: '3'
 
 services:
-  orderly-db:
-    image: postgres
-    container_name: orderly-postgres
-    environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: orderly
-      PGDATA: /data/postgres
+  redis:
+    image: redis:7.0.8-alpine
+    container_name: redis-server
+    ports:
+      - 6379:6379
+    networks:
+      - orderly-net
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-database
     ports:
       - 5432:5432
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /data/postgres
+    env_file:
+      - .env.production
     volumes:
-      - ./data/pg:/data/postgres
-  orderly-server:
+      - postgres:/data/postgres
+    networks:
+      - orderly-net
+    restart: unless-stopped
+
+  api:
     build: .
-    command: npm run start:dev
-    volumes:
-      - .:/usr/src/app
+    container_name: node-api
     ports:
-      - 8080:8080
-      - 9229:9229
+      - 3000:3000
+    volumes:
+      - .:/usr/api
+    networks:
+      - orderly-net
     depends_on:
-      - orderly-db
+      - redis
+      - postgres
+    restart: always
+    links:
+      - postgres
+      - redis
+    env_file:
+      - .env.production
+
+networks:
+  orderly-net:
+    driver: bridge
+
+volumes:
+  postgres:
