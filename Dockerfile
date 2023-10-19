@@ -1,14 +1,13 @@
-FROM node:18
+FROM node:18.18.2-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/api
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY . . 
 
-EXPOSE 8080
-EXPOSE 9229
+EXPOSE 3000
 
-CMD [ "npm", "run", "start:dev" ]
+CMD ["npm","run","start:dev"]
