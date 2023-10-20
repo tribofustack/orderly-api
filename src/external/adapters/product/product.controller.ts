@@ -12,7 +12,6 @@ import { CreateProductDto } from 'src/internal/domain/product/dto/create-product
 import { UpdateProductDto } from 'src/internal/domain/product/dto/update-product.dto';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 
-import { ProductsService } from './product.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Products')
