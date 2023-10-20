@@ -1,9 +1,9 @@
-import { InjectModel } from "@nestjs/sequelize";
-import { Product } from "src/internal/domain/product/entities/product.entity";
-import { IProductRepository } from "src/internal/domain/product/repositories/product.repository";
-import { ProductModel } from "./product.model";
-import { NotFoundException } from "@nestjs/common";
-import { Op } from "sequelize";
+import { InjectModel } from '@nestjs/sequelize';
+import { Product } from 'src/internal/domain/product/entities/product.entity';
+import { IProductRepository } from 'src/internal/domain/product/repositories/product.repository';
+import { ProductModel } from './product.model';
+import { NotFoundException } from '@nestjs/common';
+import { Op } from 'sequelize';
 
 export class ProductSequelizeRepository implements IProductRepository {
   constructor(
@@ -21,7 +21,7 @@ export class ProductSequelizeRepository implements IProductRepository {
       where: { category: { [Op.iLike]: category } },
     });
     if (!productModel)
-      throw new NotFoundException("product category not exists.");
+      throw new NotFoundException('product category not exists.');
 
     return productModel.map((pm) => {
       return new Product({
@@ -37,7 +37,7 @@ export class ProductSequelizeRepository implements IProductRepository {
 
   async findOne(id: string): Promise<Product> {
     const productModel = await this.model.findOne({ where: { id } });
-    if (!productModel) throw new NotFoundException("product id not exists.");
+    if (!productModel) throw new NotFoundException('product id not exists.');
 
     return new Product({
       id: productModel.id,

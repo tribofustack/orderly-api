@@ -1,15 +1,15 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
-import { IProduct } from "src/internal/domain/product/entities/product.entity";
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { IProduct } from 'src/internal/domain/product/entities/product.entity';
 
 export interface IProductModel extends IProduct {}
 
 @Table({
-  tableName: "products",
+  tableName: 'products',
   timestamps: false,
 })
 export class ProductModel extends Model implements IProductModel {
   @Column({
-    field: "id",
+    field: 'id',
     primaryKey: true,
     unique: true,
     allowNull: false,
@@ -18,14 +18,14 @@ export class ProductModel extends Model implements IProductModel {
   declare id: string;
 
   @Column({
-    field: "name",
+    field: 'name',
     allowNull: false,
     type: DataType.STRING,
   })
   declare name: string;
 
   @Column({
-    field: "description",
+    field: 'description',
     allowNull: true,
     unique: false,
     type: DataType.STRING,
@@ -33,7 +33,7 @@ export class ProductModel extends Model implements IProductModel {
   declare description: string;
 
   @Column({
-    field: "category",
+    field: 'category',
     type: DataType.STRING,
     allowNull: false,
     unique: false,
@@ -41,7 +41,7 @@ export class ProductModel extends Model implements IProductModel {
   declare category: string;
 
   @Column({
-    field: "price",
+    field: 'price',
     type: DataType.DECIMAL(10, 2),
     allowNull: false,
     unique: false,
@@ -49,7 +49,7 @@ export class ProductModel extends Model implements IProductModel {
   declare price: number;
 
   @Column({
-    field: "quantity",
+    field: 'quantity',
     type: DataType.INTEGER,
     allowNull: false,
     unique: false,

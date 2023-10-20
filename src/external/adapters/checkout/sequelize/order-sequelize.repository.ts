@@ -1,10 +1,10 @@
-import { IOrderRepository } from "src/internal/domain/checkout/repositories/order.repository";
-import { OrderItemModel } from "./order-item-model";
-import { OrderModel } from "./order-model";
-import { Order } from "src/internal/domain/checkout/entities/order.entity";
-import { OrderItem } from "src/internal/domain/checkout/entities/order-item.entity";
-import { InjectModel } from "@nestjs/sequelize";
-import { orderStatusDto } from "src/internal/domain/checkout/dto/order-status.dto";
+import { IOrderRepository } from 'src/internal/domain/checkout/repositories/order.repository';
+import { OrderItemModel } from './order-item-model';
+import { OrderModel } from './order-model';
+import { Order } from 'src/internal/domain/checkout/entities/order.entity';
+import { OrderItem } from 'src/internal/domain/checkout/entities/order-item.entity';
+import { InjectModel } from '@nestjs/sequelize';
+import { orderStatusDto } from 'src/internal/domain/checkout/dto/order-status.dto';
 
 export class OrderSequelizeRepository implements IOrderRepository {
   constructor(
@@ -23,7 +23,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       include: [
         {
           model: OrderItemModel,
-          as: "orderItems",
+          as: 'orderItems',
         },
       ],
     });
@@ -60,7 +60,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       include: [
         {
           model: OrderItemModel,
-          as: "orderItems",
+          as: 'orderItems',
         },
       ],
     });
