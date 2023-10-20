@@ -1,73 +1,101 @@
+<h1 align="center">Orderly API</h1>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-technologies">Tecnologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-running">Running</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-license">License</a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<p align="center">
+  <a href="#-license">
+    <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=ed2945&labelColor=000000">
+  </a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## 💻 Project
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Orderly API is a cutting-edge web API designed to streamline operations for restaurant and food businesses (RMS). It draws from the principles of **Domain-Driven Design (DDD)** and **Hexagonal Architecture** to ensure scalability, maintainability, and a robust integration capability.
 
-## Installation
+## ✨ Technologies
 
-```bash
-$ npm install
+This project was built using the following technologies and architectural concepts:
+
+- [NestJS](https://nestjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
+- [DDD (Domain-driven Design)](https://domainlanguage.com/)
+- [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
+
+## 🟢 Running
+
+Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installed.
+
+1. Clone this project:
+
+```sh
+git clone https://github.com/tribofustack/orderly.git
 ```
 
-## Running the app
+2. Start the application:
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```sh
+npm run docker:start
 ```
 
-## Test
+## Database ER Diagram
 
-```bash
-# unit tests
-$ npm run test
+<img align="center" src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
 
-# e2e tests
-$ npm run test:e2e
+## DDD (Domain-Driven Design)
 
-# test coverage
-$ npm run test:cov
-```
+Domain-Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. Here's a breakdown of how DDD principles have been applied in Orderly:
 
-## Support
+### Domain Storytelling
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### 1.1. Entities
 
-## Stay in touch
+1. **Client**: Identified optionally by a Brazilian CPF.
+2. **Payment**: Represents a transaction that will be used with OHS. Has an associated status (perhaps initiated, processed, confirmed).
+3. **Order**: Represents a customer's request. It has associated status (Received, Preparing, Ready, Finalized).
+4. **Service**: Represents the production of food. It has associated products and a client.
+5. **Notification**: A medium for communication with the user and the restaurant. Will utilize an ACL for integration.
+6. **Admin**: Handles promotional strategies and stock management.
+7. **Stock**: Represents the available inventory of products.
+8. **Product**: Items like Hamburger, Fries, Soda, etc.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### 1.2. Value Objects
 
-## License
+1. **ProductDetails**: For `Product`, attributes like `Name`, `Description`, `NutritionalInfo`, etc., can be value objects. They don't have an identity on their own, but they describe a Product.
+2. **PaymentDetails**: For `Payment`, attributes like `Amount`, `Currency`, `QRCode` can be value objects.
+3. **NotificationContent**: For `Notification`, details like `Message`, `Timestamp`, and `Type` could be value objects.
 
-Nest is [MIT licensed](LICENSE).
+#### 1.3. Aggregates
+
+1. **Check-in**: Rooted at `Client`, with `Order` being part of the aggregate.
+2. **Check-out**: Rooted at `Order`, which affects both `Deliver` and `Production`.
+3. **Communication**: Rooted at the `Notification` system, interfacing via an ACL.
+4. **Billing**: Rooted at `Payment`, using ACL to conform with OHS.
+5. **Admin**: Rooted at `Admin`, influencing the `Stock`.
+
+#### 1.4. Domain Events
+
+1. **ClientRegistered**: Triggered when a client registers.
+2. **ProductsSelected**: Triggered when products are selected.
+3. **OrderCreated**: Triggered after order creation.
+4. **PaymentProcessed**: Triggered during the payment process.
+5. **PaymentApproved**: Triggered upon payment confirmation.
+6. **StatusUpdatedToReceived**: Triggered when order status changes.
+7. **ClientNotified**: Triggered to notify the client.
+
+### Event Storming
+
+<img align="center" src="./.github/event-storming.png" alt="Event Storming" />
+
+### Context Map
+
+<img align="center" src="./.github/context-map.png" alt="Context Map" />
+
+## 📝 License
+
+This project is licensed under the MIT License. For more information, please refer to the [LICENSE](LICENSE.md) file.
