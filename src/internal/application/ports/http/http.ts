@@ -1,5 +1,5 @@
 export interface IHttpRequest {
-  body?: unknown;
+  body?: any;
   params?: unknown;
   headers?: unknown;
   query?: unknown;

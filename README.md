@@ -41,6 +41,8 @@ git clone https://github.com/tribofustack/orderly.git
 
 ```sh
 npm run docker:start
+
+docker compose up --build
 ```
 
 ## Database ER Diagram
