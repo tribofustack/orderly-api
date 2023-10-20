@@ -27,10 +27,4 @@ import { Jwt } from './external/infra/tokens/jwt/jwt';
   controllers: [],
   providers: [Jwt, { provide: 'TokenGenerator', useExisting: Jwt }],
 })
-export class AppModule {
-  // constructor(@InjectQueue('orders') private ordersQueue: Queue) {}
-  // configure(consumer: MiddlewareBuilder) {
-  //   const { router } = createBullBoard([new BullAdapter(this.ordersQueue)]);
-  //   consumer.apply(router).forRoutes('/admin/queues');
-  // }
-}
+export class AppModule {}

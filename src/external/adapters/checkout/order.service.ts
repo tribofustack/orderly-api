@@ -18,19 +18,19 @@ export class OrdersService {
     @Inject('EventEmitter')
     private eventEmitter: EventEmitter,
 
-    @Inject('IdentifierGenerator')
+    @Inject('IdGenerator')
     private idGenerator: IIdentifierGenerator,
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
-    const { products } = createOrderDto;
+    const products = createOrderDto.products;
 
-    const orderItems = products.map(product => {
+    const orderItems = products.map((product) => {
       return new OrderItem({
         id: this.idGenerator.generate(),
         productId: product.id,
         quantity: product.quantity,
-        value: product.value,
+        value: product.price,
       });
     });
     const order = new Order({
