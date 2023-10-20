@@ -1,10 +1,9 @@
-import { NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { Op } from 'sequelize';
-import { Product } from 'src/internal/domain/product/entities/product.entity';
-import { IProductRepository } from 'src/internal/domain/product/repositories/product.repository';
-
-import { ProductModel } from './product.model';
+import { InjectModel } from "@nestjs/sequelize";
+import { Product } from "src/internal/domain/product/entities/product.entity";
+import { IProductRepository } from "src/internal/domain/product/repositories/product.repository";
+import { ProductModel } from "./product.model";
+import { NotFoundException } from "@nestjs/common";
+import { Op } from "sequelize";
 
 export class ProductSequelizeRepository implements IProductRepository {
   constructor(
@@ -22,15 +21,15 @@ export class ProductSequelizeRepository implements IProductRepository {
       where: { category: { [Op.iLike]: category } },
     });
     if (!productModel)
-      throw new NotFoundException('product category not exists.');
+      throw new NotFoundException("product category not exists.");
 
-    return productModel.map(pm => {
+    return productModel.map((pm) => {
       return new Product({
         id: pm.id,
         category: pm.category,
         description: pm.description,
         name: pm.name,
-        price: pm.price,
+        price: Number(pm.price),
         quantity: pm.quantity,
       });
     });
@@ -38,7 +37,7 @@ export class ProductSequelizeRepository implements IProductRepository {
 
   async findOne(id: string): Promise<Product> {
     const productModel = await this.model.findOne({ where: { id } });
-    if (!productModel) throw new NotFoundException('product id not exists.');
+    if (!productModel) throw new NotFoundException("product id not exists.");
 
     return new Product({
       id: productModel.id,
@@ -53,7 +52,7 @@ export class ProductSequelizeRepository implements IProductRepository {
   async findAll(): Promise<Product[]> {
     const productsModel = await this.model.findAll();
 
-    return productsModel.map(p => {
+    return productsModel.map((p) => {
       return new Product({
         id: p.id,
         name: p.name,

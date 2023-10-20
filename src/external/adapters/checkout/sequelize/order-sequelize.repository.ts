@@ -1,11 +1,10 @@
-import { InjectModel } from '@nestjs/sequelize';
-import { orderStatusDto } from 'src/internal/domain/checkout/dto/order-status.dto';
-import { OrderItem } from 'src/internal/domain/checkout/entities/order-item.entity';
-import { Order } from 'src/internal/domain/checkout/entities/order.entity';
-import { IOrderRepository } from 'src/internal/domain/checkout/repositories/order.repository';
-
-import { OrderItemModel } from './order-item-model';
-import { OrderModel } from './order-model';
+import { IOrderRepository } from "src/internal/domain/checkout/repositories/order.repository";
+import { OrderItemModel } from "./order-item-model";
+import { OrderModel } from "./order-model";
+import { Order } from "src/internal/domain/checkout/entities/order.entity";
+import { OrderItem } from "src/internal/domain/checkout/entities/order-item.entity";
+import { InjectModel } from "@nestjs/sequelize";
+import { orderStatusDto } from "src/internal/domain/checkout/dto/order-status.dto";
 
 export class OrderSequelizeRepository implements IOrderRepository {
   constructor(
@@ -24,14 +23,14 @@ export class OrderSequelizeRepository implements IOrderRepository {
       include: [
         {
           model: OrderItemModel,
-          as: 'orderItems',
+          as: "orderItems",
         },
       ],
     });
 
     if (!orderModel) return null;
 
-    const orderItems = orderModel.orderItems.map(item => {
+    const orderItems = orderModel.orderItems.map((item) => {
       return new OrderItem({
         id: item.id,
         value: Number(item.value),
@@ -61,15 +60,15 @@ export class OrderSequelizeRepository implements IOrderRepository {
       include: [
         {
           model: OrderItemModel,
-          as: 'orderItems',
+          as: "orderItems",
         },
       ],
     });
 
     if (orderModels.length < 1) return [];
 
-    return orderModels.map(om => {
-      const orderItems = om.orderItems.map(item => {
+    return orderModels.map((om) => {
+      const orderItems = om.orderItems.map((item) => {
         return new OrderItem({
           id: item.id,
           value: Number(item.value),
@@ -96,7 +95,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
     });
 
     await Promise.all(
-      entity.orderItems.map(async item => {
+      entity.orderItems.map(async (item) => {
         return this.orderItemM.create({
           id: item.id,
           productId: item.productId,
