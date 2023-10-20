@@ -29,7 +29,6 @@
     "@nestjs/sequelize": "^10.0.0",
     "@nestjs/swagger": "^7.1.13",
     "bull": "^4.11.4",
-    "bull-board": "^2.1.3",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",

@@ -1,13 +1,13 @@
 export interface IHttpRequest {
   body?: any;
-  params?: unknown;
   headers?: unknown;
   query?: unknown;
+  params?: any;
 }
 
 export interface IHttpResponse {
   status: number;
-  body: unknown;
+  body: any;
 }
 
 export interface IHttp {

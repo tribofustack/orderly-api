@@ -3,6 +3,6 @@ export interface CreateOrderDto {
   products: Array<{
     id: string;
     quantity: number;
-    value: number;
+    price: number;
   }>;
 }
