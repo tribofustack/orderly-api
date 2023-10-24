@@ -40,7 +40,9 @@ git clone https://github.com/tribofustack/orderly.git
 2. Start the application:
 
 ```sh
-npm run docker:start
+
+npm run start:docker
+
 ```
 
 ## Database ER Diagram

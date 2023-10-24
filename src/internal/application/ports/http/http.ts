@@ -1,8 +1,8 @@
 export interface IHttpRequest {
   body?: any;
+  headers?: unknown;
+  query?: unknown;
   params?: any;
-  headers?: any;
-  query?: any;
 }
 
 export interface IHttpResponse {
