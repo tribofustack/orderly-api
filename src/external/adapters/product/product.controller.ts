@@ -12,7 +12,8 @@ import { CreateProductDto } from 'src/internal/domain/product/dto/create-product
 import { UpdateProductDto } from 'src/internal/domain/product/dto/update-product.dto';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateProductSwagger, CreatedProductSwagger } from 'src/internal/application/docs/swagger/product/create-product.dto';
 
 @ApiTags('Products')
 @Controller('products')
@@ -20,7 +21,8 @@ export class ProductController {
   constructor(private readonly productsService: ProductsService) { }
 
   @ApiOperation({ summary: 'Create Product' })
-  @ApiResponse({ status: 201, description: 'Product successfully created.' })
+  @ApiBody({ type: CreateProductSwagger })
+  @ApiResponse({ status: 201, description: 'Product successfully created.', type: CreatedProductSwagger })
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     try {
