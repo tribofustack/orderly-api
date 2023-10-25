@@ -12,7 +12,7 @@ export class CustomerController {
 
   @ApiOperation({ summary: 'Create Customer' })
   @ApiBody({ type: CreateCustomerSwagger })
-  @ApiResponse({ status: 201, description: 'Customer successfully created.', type: [CreatedCustomerSwagger] })
+  @ApiResponse({ status: 201, description: 'Customer successfully created.', type: CreatedCustomerSwagger })
   @Post()
   create(@Body() createCustomerDto: CreateCustomerDto) {
     try {

@@ -17,7 +17,7 @@ export class OrderController {
 
   @ApiOperation({ summary: 'Create Order' })
   @ApiBody({ type: CreateOrderSwagger })
-  @ApiResponse({ status: 201, description: 'Order successfully created.', type: [CreatedOrderSwagger]  })
+  @ApiResponse({ status: 201, description: 'Order successfully created.', type: CreatedOrderSwagger  })
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     try {

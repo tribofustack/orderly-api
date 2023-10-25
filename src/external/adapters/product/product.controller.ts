@@ -22,7 +22,7 @@ export class ProductController {
 
   @ApiOperation({ summary: 'Create Product' })
   @ApiBody({ type: CreateProductSwagger })
-  @ApiResponse({ status: 201, description: 'Product successfully created.', type: [CreatedProductSwagger] })
+  @ApiResponse({ status: 201, description: 'Product successfully created.', type: CreatedProductSwagger })
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     try {
