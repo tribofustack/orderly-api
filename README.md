@@ -37,13 +37,17 @@ Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installe
 git clone https://github.com/tribofustack/orderly.git
 ```
 
-2. Start the application:
+2. Configure your environment by creating a `.env` file based on the `.env.production`.
+
+3. Start the application:
 
 ```sh
-
 npm run start:docker
-
 ```
+
+This will launch the application at port `3000`.
+
+Once it's up, the Swagger documentation can be accessed at `http://localhost:3000/`.
 
 ## Database ER Diagram
 
