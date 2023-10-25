@@ -3,7 +3,8 @@ import { OrdersService } from './order.service';
 import { CreateOrderDto } from 'src/internal/domain/checkout/dto/create-order.dto';
 import { ProductsService } from '../product/product.service';
 import { responseError } from 'src/external/infra/errors/reponse.error';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateOrderSwagger, CreatedOrderSwagger } from 'src/internal/application/docs/swagger/checkout/create-order.dto';
 
 @ApiTags('Order')
 @Controller('orders')
@@ -15,7 +16,8 @@ export class OrderController {
   ) {}
 
   @ApiOperation({ summary: 'Create Order' })
-  @ApiResponse({ status: 201, description: 'Order successfully created.' })
+  @ApiBody({ type: CreateOrderSwagger })
+  @ApiResponse({ status: 201, description: 'Order successfully created.', type: [CreatedOrderSwagger]  })
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     try {
