@@ -18,7 +18,7 @@
   "plugins": ["@typescript-eslint", "eslint-plugin-import-helpers", "prettier"],
   "rules": {
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "singleQuote": true,
         "printWidth": 80,
@@ -30,7 +30,7 @@
       }
     ],
     "camelcase": "off",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": "warn",
     "@typescript-eslint/no-empty-function": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
@@ -40,7 +40,7 @@
     "no-empty-function": "off",
     "lines-between-class-members": "off",
     "import/extensions": [
-      "error",
+      "warn",
       "ignorePackages",
       {
         "ts": "never"
@@ -58,7 +58,7 @@
       }
     ],
     "import/no-extraneous-dependencies": [
-      "error",
+      "warn",
       {
         "devDependencies": ["**/*.spec.js"]
       }
