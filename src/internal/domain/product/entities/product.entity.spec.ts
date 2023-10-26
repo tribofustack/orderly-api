@@ -1,0 +1,44 @@
+import { AttributeException } from 'src/internal/application/errors';
+
+import { IProduct, Product } from './product.entity';
+
+describe('Product Entity', () => {
+  describe('validate', () => {
+    it('should validate id', () => {
+      let product: IProduct;
+      try {
+        product = new Product({
+          id: null,
+          category: 'category-test',
+          description: 'description-test',
+          name: 'name-test',
+          price: 3.5,
+          quantity: 1,
+        });
+      } catch (error) {
+        expect(error).toBeTruthy();
+        expect(error.message).toBe('id not found.');
+        expect(error).toBeInstanceOf(AttributeException);
+      }
+      expect(product).toBeFalsy();
+    });
+    it('should validate name', () => {
+      let product: IProduct;
+      try {
+        product = new Product({
+          id: 'id-test',
+          category: 'category-test',
+          description: 'description-test',
+          name: null,
+          price: 3.5,
+          quantity: 1,
+        });
+      } catch (error) {
+        expect(error).toBeTruthy();
+        expect(error.message).toBe('name not found.');
+        expect(error).toBeInstanceOf(AttributeException);
+      }
+      expect(product).toBeFalsy();
+    });
+  });
+});
