@@ -5,8 +5,10 @@ import { IProduct, Product } from './product.entity';
 describe('Product Entity', () => {
   describe('validate', () => {
     it('should validate id', () => {
+      // arrange
       let product: IProduct;
       try {
+        // act
         product = new Product({
           id: null,
           category: 'category-test',
@@ -16,6 +18,7 @@ describe('Product Entity', () => {
           quantity: 1,
         });
       } catch (error) {
+        // assert
         expect(error).toBeTruthy();
         expect(error.message).toBe('id not found.');
         expect(error).toBeInstanceOf(AttributeException);

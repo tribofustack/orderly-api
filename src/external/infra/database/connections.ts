@@ -10,7 +10,6 @@ const conn = {
   logging: false,
   sync: { force: true },
   autoLoadModels: true,
-  // models: [`${__dirname}/models`],
 };
 
 const connTest = {

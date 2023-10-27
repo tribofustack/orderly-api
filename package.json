@@ -11,8 +11,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "cross-env NODE_ENV=test jest",
-    "test:coverage": "cross-env NODE_ENV=test jest --coverage"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "engines": {
     "node": ">=18.16.0",
