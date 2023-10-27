@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { CustomersService } from './customer.service';
 import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-customer.dto';
 import { responseError } from 'src/external/infra/errors/reponse.error';
@@ -17,6 +17,15 @@ export class CustomerController {
   create(@Body() createCustomerDto: CreateCustomerDto) {
     try {
       return this.customersService.create(createCustomerDto);
+    } catch (err: any) {
+      responseError(err);
+    }
+  }
+
+  @Get(':cpf')
+  async getCustomer(@Param('cpf') cpf: string) {
+    try {
+      return await this.customersService.findByCpf(cpf);
     } catch (err: any) {
       responseError(err);
     }

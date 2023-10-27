@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { NotFoundException } from 'src/internal/application/errors';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
 import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-customer.dto';
 import { Customer } from 'src/internal/domain/customers/entities/customer.entity';
@@ -51,5 +52,13 @@ export class CustomersService {
 
   async findById(id: string) {
     return this.customerRepository.findOne(id);
+  }
+
+  async findByCpf(cpf: string) : Promise<Customer> {
+    const customer = this.customerRepository.findByCpf(cpf);
+    
+    if (!customer) throw new NotFoundException('Customer not found');
+    
+    return customer;
   }
 }
