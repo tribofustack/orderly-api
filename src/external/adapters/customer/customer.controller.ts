@@ -4,6 +4,7 @@ import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-cust
 import { responseError } from 'src/external/infra/errors/reponse.error';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatedCustomerSwagger, CreateCustomerSwagger } from 'src/internal/application/docs/swagger/customers/create-customer.dto';
+import { GetCustomerSwagger } from 'src/internal/application/docs/swagger/customers/get-customer.dto';
 
 @ApiTags('Customers')
 @Controller('customers')
@@ -22,6 +23,8 @@ export class CustomerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get Customer' })
+  @ApiResponse({ status: 201, description: 'Customer found.', type: GetCustomerSwagger })
   @Get(':cpf')
   async getCustomer(@Param('cpf') cpf: string) {
     try {
