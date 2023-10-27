@@ -5,6 +5,7 @@ import {
   CreatedCustomerSwagger,
   CreateCustomerSwagger,
 } from 'src/internal/application/docs/swagger/customers/create-customer.dto';
+import { GetCustomerSwagger } from 'src/internal/application/docs/swagger/customers/get-customer.dto';
 import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-customer.dto';
 
 import { CustomersService } from './customer.service';
@@ -30,6 +31,12 @@ export class CustomerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get Customer' })
+  @ApiResponse({
+    status: 201,
+    description: 'Customer found.',
+    type: GetCustomerSwagger,
+  })
   @Get(':cpf')
   async getCustomer(@Param('cpf') cpf: string) {
     try {
