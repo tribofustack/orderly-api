@@ -55,7 +55,7 @@ export class CustomersService {
   }
 
   async findByCpf(cpf: string) : Promise<Customer> {
-    const customer = this.customerRepository.findByCpf(cpf);
+    const customer = await this.customerRepository.findByCpf(cpf);
     
     if (!customer) throw new NotFoundException('Customer not found');
     
