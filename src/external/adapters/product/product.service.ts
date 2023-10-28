@@ -63,6 +63,6 @@ export class ProductsService {
   }
 
   async findByCategory(category: string) {
-    return this.productRepository.findByCategory(category);
+    return await this.productRepository.findByCategory(category);
   }
 }
