@@ -20,7 +20,7 @@ export class ProductSequelizeRepository implements IProductRepository {
     const productModel = await this.model.findAll({
       where: { category: { [Op.iLike]: category } },
     });
-    if (!productModel)
+    if (!productModel || productModel.length === 0)
       throw new NotFoundException('product category not exists.');
 
     return productModel.map((pm) => {
