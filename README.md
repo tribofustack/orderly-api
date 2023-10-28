@@ -51,7 +51,9 @@ Once it's up, the Swagger documentation can be accessed at `http://localhost:300
 
 ## Database ER Diagram
 
-<img align="center" src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
+<div align="center">
+  <img src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
+</div>
 
 ## DDD (Domain-Driven Design)
 
@@ -96,11 +98,15 @@ Domain-Driven Design (DDD) is an approach to developing software for complex nee
 
 ### Event Storming
 
-<img align="center" src="./.github/event-storming.png" alt="Event Storming" />
+<div align="center">
+  <img src="./.github/event-storming.png" alt="Event Storming" />
+</div>
 
 ### Context Map
 
-<img align="center" src="./.github/context-map.png" alt="Context Map" />
+<div align="center">
+  <img src="./.github/context-map.png" alt="Context Map" />
+</div>
 
 ## 📝 License
 
