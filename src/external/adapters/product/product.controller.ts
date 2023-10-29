@@ -43,7 +43,6 @@ export class ProductController {
     }
   }
 
-  
   @ApiOperation({ summary: 'Delete Product' })
   @ApiResponse({ status: 201, description: 'Product successfully Deleted.' })
   @Delete(':id')
@@ -60,7 +59,6 @@ export class ProductController {
   @Get('category/:category')
   async findByCategory(@Param('category') category: string) {
     try {
-      console.log('entrou')
       return await this.productsService.findByCategory(category);
     } catch (err: any) {
       responseError(err);
