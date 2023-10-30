@@ -43,7 +43,6 @@ export class ProductController {
     }
   }
 
-  
   @ApiOperation({ summary: 'Delete Product' })
   @ApiResponse({ status: 201, description: 'Product successfully Deleted.' })
   @Delete(':id')
@@ -58,9 +57,9 @@ export class ProductController {
   @ApiOperation({ summary: 'Get Product' })
   @ApiResponse({ status: 200 })
   @Get('category/:category')
-  findByCategory(@Param('category') category: string) {
+  async findByCategory(@Param('category') category: string) {
     try {
-      return this.productsService.findByCategory(category);
+      return await this.productsService.findByCategory(category);
     } catch (err: any) {
       responseError(err);
     }
