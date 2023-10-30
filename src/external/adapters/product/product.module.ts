@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { SequelizeModule } from '@nestjs/sequelize';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { ProductsService } from './product.service';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { Uuid } from 'src/external/infra/tokens/uuid/uuid';
+
+import { DecrementProductListener } from './listeners/decrement-product.listener';
 import { ProductController } from './product.controller';
+import { ProductsService } from './product.service';
 import { ProductSequelizeRepository } from './sequelize/product-sequelize.repository';
 import { ProductModel } from './sequelize/product.model';
-import { Uuid } from 'src/external/infra/tokens/uuid/uuid';
-import { DecrementProductListener } from './listeners/decrement-product.listener';
 
 @Module({
   imports: [SequelizeModule.forFeature([ProductModel])],

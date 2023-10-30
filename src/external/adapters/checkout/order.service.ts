@@ -23,9 +23,9 @@ export class OrdersService {
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
-    const products = createOrderDto.products;
+    const { products } = createOrderDto;
 
-    const orderItems = products.map((product) => {
+    const orderItems = products.map(product => {
       return new OrderItem({
         id: this.idGenerator.generate(),
         productId: product.id,

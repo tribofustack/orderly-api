@@ -58,7 +58,7 @@ export class CustomersService {
     const customer = await this.customerRepository.findByCpf(cpf);
     
     if (!customer) throw new NotFoundException('Customer not found');
-    
+
     return customer;
   }
 }
