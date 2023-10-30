@@ -37,12 +37,18 @@ Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installe
 git clone https://github.com/tribofustack/orderly.git
 ```
 
-2. Configure your environment by creating a `.env` file based on the `.env.production`.
+2. Configure your environment by creating a `.env` file based on the `.env.example`.
 
 3. Start the application:
 
 ```sh
 npm run start:docker
+```
+
+4. Alternatively, start the application with the docker command:
+
+```sh
+docker compose up
 ```
 
 This will launch the application at port `3000`.

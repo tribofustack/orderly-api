@@ -1,5 +1,5 @@
-import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Post, Body, Get, Param, Query  } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 import {
   CreateOrderSwagger,
@@ -59,6 +59,18 @@ export class OrderController {
 
   @ApiOperation({ summary: 'Get Orders' })
   @ApiResponse({ status: 201, description: 'Order successfully created.' })
+  @ApiQuery({
+    name: "customerId",
+		description: "Query by customer id.",
+		required: false,
+		type: String
+  })
+  @ApiQuery({
+    name: "status",
+		description: "Query by order status.",
+		required: false,
+		type: String
+  })
   @Get()
   getOrders(
     @Query('customerId') customerId?: string,

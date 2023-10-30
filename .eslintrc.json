@@ -26,9 +26,10 @@
         "semi": true,
         "trailingComma": "all",
         "arrowParens": "avoid",
-        "endOfLine": "auto"
+        "endOfLine": "auto",
       }
     ],
+    "max-classes-per-file": ["error", 5],
     "camelcase": "off",
     "import/no-unresolved": "warn",
     "@typescript-eslint/no-empty-function": "off",
