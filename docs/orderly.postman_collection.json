@@ -150,6 +150,38 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "get/identify customer by cpf",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/customers/:cpf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "customers",
+                ":cpf"
+              ],
+              "variable": [
+                {
+                  "key": "cpf",
+                  "value": "123456666"
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
