@@ -45,11 +45,18 @@ git clone https://github.com/tribofustack/orderly.git
 npm run start:docker
 ```
 
-4. Alternatively, start the application with the docker command:
+4. *Alternatively*
+  
+   1. Install the packages:
+   
+    ```sh
+      npm install
+    ```
+   2. Start the application with the docker command: 
 
-```sh
-docker compose up
-```
+    ```sh
+      docker compose up --build
+    ```
 
 This will launch the application at port `3000`.
 
