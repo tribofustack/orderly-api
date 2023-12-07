@@ -32,8 +32,6 @@ services:
     container_name: node-api
     ports:
       - 3000:3000
-    volumes:
-      - .:/usr/api
     networks:
       - orderly-net
     depends_on:

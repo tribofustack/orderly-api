@@ -1,8 +1,9 @@
 import { BullModule } from '@nestjs/bull';
+import { env } from 'src/internal/application/configs/env';
 
 export const bullModule = BullModule.forRoot({
   redis: {
-    host: 'redis',
-    port: 6379,
+    host: env.cacheHost,
+    port: env.cachePort,
   },
 });

@@ -1,6 +1,6 @@
 FROM node:18.18.2-alpine
 
-WORKDIR /usr/api
+WORKDIR /api
 
 COPY package*.json ./
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm","run","start:dev"]
+CMD ["npm","run","start"]
