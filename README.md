@@ -26,6 +26,7 @@ This project was built using the following technologies and architectural concep
 - [Docker](https://www.docker.com/)
 - [DDD (Domain-driven Design)](https://domainlanguage.com/)
 - [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
+- [Kubernetes](<https://kubernetes.io/>)
 
 ## 🟢 Running
 
