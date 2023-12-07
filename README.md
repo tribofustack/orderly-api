@@ -75,6 +75,11 @@ Prerequisites: Ensure you have a tool for running local Kubernetes clusters inst
 
 With the **INTERNAL-IP + api-service PORT** the Swagger documentation can be accessed at `<INTERNAL-IP>:30000/`.
 
+### Kubernetes Architecture
+
+<div align="center">
+  <img src="./.github/k8s-node.png" alt="Kubernetes" />
+</div>
 
 ## Database ER Diagram
 
