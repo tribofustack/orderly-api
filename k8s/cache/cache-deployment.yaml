@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cache
+    spec:
+      containers:
+        - name: cache-container
+          image: redis:7.0.8-alpine
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          envFrom:          
+            - configMapRef:
+                name: cache-configmap
+          ports:
+          - containerPort: 6379
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          startupProbe:
+            tcpSocket:
+              port: 6379
+            periodSeconds: 30
+            failureThreshold: 5
+            initialDelaySeconds: 30
