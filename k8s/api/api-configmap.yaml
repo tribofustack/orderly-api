@@ -11,5 +11,5 @@ data:
   DB_PASSWORD: postgres
   DB_NAME: postgres
   DB_DIALECT: postgres
-  CACHE_HOST: redis
+  CACHE_HOST: cache-service
   CACHE_PORT: '6379'
