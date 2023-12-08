@@ -80,6 +80,6 @@ export class OrdersService {
   }
 
   async findAll(customerId?: string, status?: string) {
-    return this.orderRepository.findAll(customerId, status);
+    return this.orderRepository.findAllWithoutFinishedAndOrderedByStatusAndCreateDate(customerId, status);
   }
 }

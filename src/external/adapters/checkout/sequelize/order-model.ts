@@ -1,6 +1,7 @@
 import {
   BelongsTo,
   Column,
+  CreatedAt,
   DataType,
   ForeignKey,
   HasMany,
@@ -10,6 +11,7 @@ import {
 
 import { CustomerModel } from '../../customer/sequelize/customer.model';
 import { OrderItemModel } from './order-item-model';
+import { CreationOptional } from 'sequelize';
 
 interface IOrderModel {
   id: string;
@@ -19,10 +21,7 @@ interface IOrderModel {
   orderItems: OrderItemModel[];
 }
 
-@Table({
-  tableName: 'orders',
-  timestamps: false,
-})
+@Table({ tableName: 'orders' })
 class OrderModel extends Model implements IOrderModel {
   @Column({
     field: 'id',
@@ -60,6 +59,9 @@ class OrderModel extends Model implements IOrderModel {
     type: DataType.DECIMAL(10, 2),
   })
   declare total: number;
+
+  @CreatedAt
+  declare createdAt: CreationOptional<Date>
 }
 
 export { OrderModel };
