@@ -33,7 +33,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-    - .:/usr/api
+      - .:/usr/api
     networks:
       - orderly-net
     depends_on:
