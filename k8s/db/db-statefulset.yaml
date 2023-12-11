@@ -16,10 +16,6 @@ spec:
       containers:
       - name: db-container
         image: postgres:latest
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5432
         envFrom:

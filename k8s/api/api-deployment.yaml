@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-container
-        image: tribofustack/orderly:1
+        image: dealmachine/orderly:2
         workingDir: /usr/api
         resources:
           limits:
@@ -29,17 +29,20 @@ spec:
           httpGet:
             path: /orders
             port: 3000
-          periodSeconds: 10
-          initialDelaySeconds: 20
+          periodSeconds: 10 # perido de tempo para cada requisição
+          timeoutSeconds: 3 # tempo de espera por requisição
+          failureThreshold: 3 # quantidade de falhas para reiniciar
+           # initialDelaySeconds: # 20 demora para realizar primeira requisição
         readinessProbe:
           httpGet:
             path: /orders
             port: 3000
-          periodSeconds: 10
-          initialDelaySeconds: 10
+          periodSeconds: 3
+          failureThreshold: 3
+          # initialDelaySeconds: 10
         startupProbe:
           httpGet:
             path: /orders
             port: 3000
-          periodSeconds: 30
-          initialDelaySeconds: 60
+          periodSeconds: 5
+          failureThreshold: 30
