@@ -7,7 +7,6 @@ import { InjectModel } from '@nestjs/sequelize';
 import { orderStatusDto } from 'src/internal/domain/checkout/dto/order-status.dto';
 import { Op } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
-import sequelize from 'sequelize';
 
 export class OrderSequelizeRepository implements IOrderRepository {
   constructor(
