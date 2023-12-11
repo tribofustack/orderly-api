@@ -1,6 +1,6 @@
 FROM node:18.18.2-alpine
 
-WORKDIR /api
+WORKDIR /usr/api
 
 COPY package*.json ./
 
