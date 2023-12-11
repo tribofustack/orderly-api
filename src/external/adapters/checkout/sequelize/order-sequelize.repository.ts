@@ -5,6 +5,8 @@ import { Order } from 'src/internal/domain/checkout/entities/order.entity';
 import { OrderItem } from 'src/internal/domain/checkout/entities/order-item.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import { orderStatusDto } from 'src/internal/domain/checkout/dto/order-status.dto';
+import { Op } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 export class OrderSequelizeRepository implements IOrderRepository {
   constructor(
@@ -43,6 +45,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       id: orderModel.id,
       customerId: orderModel.customerId,
       orderItems,
+      createdAt: orderModel.createdAt,
     });
     order.updateStatus(orderModel.status as orderStatusDto);
 
@@ -80,6 +83,61 @@ export class OrderSequelizeRepository implements IOrderRepository {
         id: om.id,
         customerId: om.customerId,
         orderItems,
+        createdAt: om.createdAt,
+      });
+      order.updateStatus(om.status as orderStatusDto);
+      return order;
+    });
+  }
+
+  async findAllWithoutFinishedAndOrderedByStatusAndCreateDate(
+    customerIdQuery?: string,
+    statusQuery?: string,
+  ): Promise<Order[]> {
+    const customerId = customerIdQuery ? { customerId: customerIdQuery } : {};
+    const status = statusQuery ? { status: statusQuery } : {};
+    const orderModels = await this.orderM.findAll({
+      where: { 
+        ...customerId,
+        ...status,
+        [Op.not]: {
+          status: 'Finalizado'
+        }
+      },
+      include: [
+        {
+          model: OrderItemModel,
+          as: 'orderItems',
+        },
+      ],
+      order: [
+        [Sequelize.literal(`CASE 
+          WHEN status = 'Pronto' THEN 1 
+          WHEN status = 'Em preparação' THEN 2
+          WHEN status = 'Recebido' THEN 3
+          ELSE 4 END`),
+          "ASC"
+        ],
+        ['createdAt', 'ASC']
+      ],
+    });
+
+    if (orderModels.length < 1) return [];
+
+    return orderModels.map((om) => {
+      const orderItems = om.orderItems.map((item) => {
+        return new OrderItem({
+          id: item.id,
+          value: Number(item.value),
+          productId: item.productId,
+          quantity: item.quantity,
+        });
+      });
+      const order = new Order({
+        id: om.id,
+        customerId: om.customerId,
+        orderItems,
+        createdAt: om.createdAt,
       });
       order.updateStatus(om.status as orderStatusDto);
       return order;
@@ -92,6 +150,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       customerId: entity.customerId,
       total: entity.total,
       status: entity.status,
+      createdAt: entity.createdAt
     });
 
     await Promise.all(
