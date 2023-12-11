@@ -46,7 +46,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       id: orderModel.id,
       customerId: orderModel.customerId,
       orderItems,
-      dataCriacao: orderModel.createdAt,
+      createdAt: orderModel.createdAt,
     });
     order.updateStatus(orderModel.status as orderStatusDto);
 
@@ -84,7 +84,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
         id: om.id,
         customerId: om.customerId,
         orderItems,
-        dataCriacao: om.createdAt,
+        createdAt: om.createdAt,
       });
       order.updateStatus(om.status as orderStatusDto);
       return order;
@@ -138,7 +138,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
         id: om.id,
         customerId: om.customerId,
         orderItems,
-        dataCriacao: om.createdAt,
+        createdAt: om.createdAt,
       });
       order.updateStatus(om.status as orderStatusDto);
       return order;
@@ -151,7 +151,7 @@ export class OrderSequelizeRepository implements IOrderRepository {
       customerId: entity.customerId,
       total: entity.total,
       status: entity.status,
-      createdAt: entity.dataCriacao
+      createdAt: entity.createdAt
     });
 
     await Promise.all(
