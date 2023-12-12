@@ -24,19 +24,19 @@ spec:
             name: cache-configmap
         ports:
         - containerPort: 6379
-        livenessProbe:
-          tcpSocket:
-            port: 6379
-          initialDelaySeconds: 15
-          periodSeconds: 10
-        readinessProbe:
-          tcpSocket:
-            port: 6379
-          initialDelaySeconds: 5
-          periodSeconds: 10
         startupProbe:
           tcpSocket:
             port: 6379
-          periodSeconds: 30
-          failureThreshold: 5
-          initialDelaySeconds: 30
+          periodSeconds: 5
+          failureThreshold: 30
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+          periodSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3

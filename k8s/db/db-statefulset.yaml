@@ -24,24 +24,22 @@ spec:
         volumeMounts:
         - name: postgres
           mountPath: /data/postgres
+        startupProbe:
+          tcpSocket:
+            port: 5432
+          periodSeconds: 5
+          failureThreshold: 30
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+          periodSeconds: 3
+          failureThreshold: 3
         livenessProbe:
           tcpSocket:
             port: 5432
           periodSeconds: 10
+          timeoutSeconds: 3
           failureThreshold: 3
-          initialDelaySeconds: 20
-        readinessProbe:
-          tcpSocket:
-            port: 5432
-          periodSeconds: 10
-          failureThreshold: 5
-          initialDelaySeconds: 3
-        startupProbe:
-          tcpSocket:
-            port: 5432
-          periodSeconds: 30
-          failureThreshold: 5
-          initialDelaySeconds: 60
       volumes:
       - name: postgres
         persistentVolumeClaim:
