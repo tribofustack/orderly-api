@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-statefulset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  serviceName: db-service
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db-container
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: db-configmap
+        volumeMounts:
+        - name: postgres
+          mountPath: /data/postgres
+        startupProbe:
+          tcpSocket:
+            port: 5432
+          periodSeconds: 5
+          failureThreshold: 30
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+          periodSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
+          tcpSocket:
+            port: 5432
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+      volumes:
+      - name: postgres
+        persistentVolumeClaim:
+          claimName: database-pv
+
+

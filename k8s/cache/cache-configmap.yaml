@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cache-configmap
+data:
+  CACHE_HOST: redis
+  CACHE_PORT: '6379'

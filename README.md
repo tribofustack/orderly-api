@@ -26,6 +26,7 @@ This project was built using the following technologies and architectural concep
 - [Docker](https://www.docker.com/)
 - [DDD (Domain-driven Design)](https://domainlanguage.com/)
 - [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
+- [Kubernetes](<https://kubernetes.io/>)
 
 ## 🟢 Running
 
@@ -54,6 +55,32 @@ docker compose up
 This will launch the application at port `3000`.
 
 Once it's up, the Swagger documentation can be accessed at `http://localhost:3000/`.
+
+
+## 🔵 Kubernetes
+
+Prerequisites: Ensure you have a tool for running local Kubernetes clusters installed.
+
+<div align="center">
+  <img src="./.github/k8s.png" alt="Kubernetes" />
+</div>
+  
+⚠️ **Wait** until the pods are ready, you can see the process with this command: ``` sudo kubectl get pods -o wide ```
+
+📌 To get the port you can use this command: ``` sudo kubectl get svc -o wide ```
+
+  - By default this will launch the application at port `30000`.
+
+📌 Get the INTERNAL-IP with command: ``` sudo kubectl get nodes -o wide ```
+
+
+With the **INTERNAL-IP + api-service PORT** the Swagger documentation can be accessed at `<INTERNAL-IP>:30000/`.
+
+### Kubernetes Architecture
+
+<div align="center">
+  <img src="./.github/k8s-node.png" alt="Kubernetes" />
+</div>
 
 ## Database ER Diagram
 
