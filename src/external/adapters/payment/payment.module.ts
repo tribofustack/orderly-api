@@ -19,17 +19,17 @@ import { PaymentMercadoPago } from 'src/external/infra/payment/payment-mercadopa
   providers: [
     PaymentService,
     Uuid,
-    { provide: 'IdGenerator', useExisting: Uuid },
     PaymentSequelizeRepository,
-    { provide: 'PaymentRepository', useExisting: PaymentSequelizeRepository },
     AxiosHttp,
-    { provide: 'Http', useExisting: AxiosHttp },
     PaymentMercadoPago,
-    { provide: 'PaymentIntegration', useExisting: PaymentMercadoPago },
-    { provide: 'EventEmitter', useExisting: EventEmitter2 },
     PublishPaymentIntegrationListener,
     ChangePaymentStatusListener,
     PaymentConsumeOrder,
+    { provide: 'IdGenerator', useExisting: Uuid },
+    { provide: 'PaymentRepository', useExisting: PaymentSequelizeRepository },
+    { provide: 'Http', useExisting: AxiosHttp },
+    { provide: 'PaymentIntegration', useExisting: PaymentMercadoPago },
+    { provide: 'EventEmitter', useExisting: EventEmitter2 },
   ],
 })
 export class PaymentModule {}
