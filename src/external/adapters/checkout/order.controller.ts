@@ -30,6 +30,7 @@ export class OrderController {
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     try {
+      await this.customerService.findById(createOrderDto.customerId);
       await this.productsService.verifyProductQuantity(createOrderDto.products);
       return await this.ordersService.create(createOrderDto);
     } catch (err) {

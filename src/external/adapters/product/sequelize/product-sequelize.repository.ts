@@ -64,9 +64,9 @@ export class ProductSequelizeRepository implements IProductRepository {
     });
   }
 
-  async findOne(id: string): Promise<Product> {
+  async findOne(id: string): Promise<Product | null> {
     const productModel = await this.model.findOne({ where: { id } });
-    if (!productModel) throw new NotFoundException('product id not exists.');
+    if (!productModel) return null
 
     return new Product({
       id: productModel.id,

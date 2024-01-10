@@ -103,6 +103,9 @@ export class OrdersService {
   }
 
   async getStatus(id: string) {
+    const order = await this.orderRepository.findOne(id);
+    if (!order) throw new NotFoundException('order not found');
+
     const { status } = await this.orderRepository.getStatus(id);
 
     let timeToWait = 'Pedido ainda não foi iniciado.';

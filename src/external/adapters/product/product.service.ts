@@ -5,7 +5,7 @@ import { IProductRepository } from 'src/internal/domain/product/repositories/pro
 import { Product } from 'src/internal/domain/product/entities/product.entity';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
 import { VerifyProductDto } from 'src/internal/domain/product/dto/verify-product.dto';
-import { DomainException } from 'src/internal/application/errors';
+import { DomainException, NotFoundException } from 'src/internal/application/errors';
 import EventEmitter from 'events';
 import { ProductDecreasedEvent } from 'src/internal/domain/product/events/product-decreased.event';
 
@@ -43,6 +43,7 @@ export class ProductsService {
     const productVerified = [];
     for (const p of products) {
       const product = await this.productRepository.findOne(p.id);
+      if(!product) throw new NotFoundException('product not found.');
       const quantity = product.quantity - p.quantity;
       const isEnough = quantity >= 0;
       if (!isEnough)
