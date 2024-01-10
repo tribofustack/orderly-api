@@ -5,6 +5,7 @@ import { OrderModule } from './external/adapters/checkout/order.module';
 import { CustomerModule } from './external/adapters/customer/customer.module';
 import { ProductModule } from './external/adapters/product/product.module';
 import { PaymentModule } from './external/adapters/payment/payment.module';
+
 import DatabaseModule from './external/infra/database';
 import QueueModule from './external/infra/queue';
 import TokenGeneratorModule from './external/infra/tokens';
