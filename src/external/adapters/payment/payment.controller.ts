@@ -7,27 +7,27 @@ export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
   @Post('order/:id/approve')
-  approve(@Param('id') id: string) {
+  async approve(@Param('id') id: string) {
     try {
-      return this.paymentService.approveByOrderId(id);
+      return await this.paymentService.approveByOrderId(id);
     } catch (err) {
       return responseError(err);
     }
   }
 
   @Delete('order/:id/cancel')
-  cancel(@Param('id') id: string) {
+  async cancel(@Param('id') id: string) {
     try { 
-      return this.paymentService.cancelByOrderId(id);
+      return await this.paymentService.cancelByOrderId(id);
     } catch (err) {
       return responseError(err);
     }
   }
 
   @Get('order/:id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     try {
-      return this.paymentService.findOneByOrderId(id);
+      return await this.paymentService.findOneByOrderId(id);
     } catch (err) {
       return responseError(err);
     }

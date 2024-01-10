@@ -101,4 +101,31 @@ export class OrdersService {
   async findAll(customerId?: string, status?: string) {
     return this.orderRepository.findAllWithoutFinishedAndOrderedByStatusAndCreateDate(customerId, status);
   }
+
+  async getStatus(id: string) {
+    const order = await this.orderRepository.findOne(id);
+    if (!order) throw new NotFoundException('order not found');
+
+    const { status } = await this.orderRepository.getStatus(id);
+
+    let timeToWait = 'Pedido ainda não foi iniciado.';
+
+    if (status === 'Pago') timeToWait = 'Tempo de espera: 45 minutos.';
+
+    if (status === 'Em preparação') timeToWait = 'Tempo de espera: 30 minutos.';
+
+    if (status === 'Pronto') timeToWait = 'Pedido pronto para retirar.';
+
+    if (status === 'Finalizado')
+      timeToWait = 'Pedido foi retirado e finalizado.';
+
+    return {
+      status,
+      timeToWait,
+    };
+  }
+
+  async getCustomerReport(customerId: string) {
+    return await this.orderRepository.getReportByCustomer(customerId);
+  }
 }

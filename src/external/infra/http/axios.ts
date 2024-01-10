@@ -34,7 +34,7 @@ export class AxiosHttp implements IHttp {
       headers: request.headers,
       params: request.params,
     });
-    if (response.status !== 200) {
+    if (response.status > 299) {
       throw new Error(`Http error with status ${response.status}`);
     }
     return {

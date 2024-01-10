@@ -5,7 +5,7 @@ import { IProductRepository } from 'src/internal/domain/product/repositories/pro
 import { Product } from 'src/internal/domain/product/entities/product.entity';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
 import { VerifyProductDto } from 'src/internal/domain/product/dto/verify-product.dto';
-import { DomainException } from 'src/internal/application/errors';
+import { DomainException, NotFoundException } from 'src/internal/application/errors';
 import EventEmitter from 'events';
 import { ProductDecreasedEvent } from 'src/internal/domain/product/events/product-decreased.event';
 
@@ -23,17 +23,16 @@ export class ProductsService {
   ) {}
 
   async create(createProductDto: CreateProductDto) {
-    // se um produto já existe ele adiciona quantidade
-    const product = new Product({
-      id: this.idGenerator.generate(),
-      name: createProductDto.name,
-      category: createProductDto.category,
-      description: createProductDto.description,
-      price: createProductDto.price,
-      quantity: createProductDto.quantity,
-    });
-    await this.productRepository.create(product);
-    return product;
+      const product = new Product({
+        id: this.idGenerator.generate(),
+        name: createProductDto.name,
+        categoryId: createProductDto.categoryId,
+        description: createProductDto.description,
+        price: createProductDto.price,
+        quantity: createProductDto.quantity,
+      });
+      await this.productRepository.create(product);
+      return product;
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
@@ -44,6 +43,7 @@ export class ProductsService {
     const productVerified = [];
     for (const p of products) {
       const product = await this.productRepository.findOne(p.id);
+      if(!product) throw new NotFoundException('product not found.');
       const quantity = product.quantity - p.quantity;
       const isEnough = quantity >= 0;
       if (!isEnough)
@@ -62,7 +62,11 @@ export class ProductsService {
     return this.productRepository.delete(id);
   }
 
-  async findByCategory(category: string) {
-    return await this.productRepository.findByCategory(category);
+  async findByCategory(id: string) {
+    return await this.productRepository.findByCategory(id);
+  }
+
+  async getCategories() {
+    return this.productRepository.getCategories();
   }
 }

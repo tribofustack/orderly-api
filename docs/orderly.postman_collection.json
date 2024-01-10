@@ -1,309 +1,2567 @@
 {
-  "info": {
-    "_postman_id": "04fceae3-4a88-47f4-8c8d-902707cd059e",
-    "name": "orderly",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "13574011"
-  },
-  "item": [
-    {
-      "name": "products",
-      "item": [
-        {
-          "name": "create product",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"produto 1\",\n    \"description\": \"descricao 1\",\n    \"category\": \"Feijão\",\n    \"price\": 1111,\n    \"quantity\": 12\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/products",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["products"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit product",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"name 1\",\n    \"description\": \"description 2\",\n    \"category\": \"category 1\",\n    \"price\": 1\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/products/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["products", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "79bedad9-8b21-4456-af31-98bbfc6d928a"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "remove product",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/products/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["products", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "d6854a02-4cd1-40d1-988a-c7548fd7f772"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "get products by category",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/products/category/:category",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["products", "category", ":category"],
-              "variable": [
-                {
-                  "key": "category",
-                  "value": "Feijão"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "customers",
-      "item": [
-        {
-          "name": "create/identify customer",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n   \"name\": \"douglas\",\n   \"cpf\": \"123456666\",\n   \"email\": \"douglas@gmail.com\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/customers",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["customers"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "get/identify customer by cpf",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/customers/:cpf",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "customers",
-                ":cpf"
-              ],
-              "variable": [
-                {
-                  "key": "cpf",
-                  "value": "123456666"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "orders",
-      "item": [
-        {
-          "name": "create order",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"customerId\": \"90c44ff2-f792-4e49-bff5-a9c21216897e\",\n    \"products\": [\n        {\n            \"id\": \"20fe350d-6531-4a1a-86a8-b01fdba8ec8f\",\n            \"quantity\": 1,\n            \"price\": 11\n        }\n    ]\n}"
-            },
-            "url": {
-              "raw": "http://localhost:3000/orders",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["orders"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "prepare order",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/orders/:orderId/prepare",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["orders", ":orderId", "prepare"],
-              "variable": [
-                {
-                  "key": "orderId",
-                  "value": "d1651512-0911-424a-98b2-b3e6243ee576"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "withdrawn order",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/orders/:orderId/withdrawn",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["orders", ":orderId", "withdrawn"],
-              "variable": [
-                {
-                  "key": "orderId",
-                  "value": "d23bd5ff-bfbd-44f6-b3cf-5d44b44c50c1"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "get orders",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/orders/",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["orders", ""],
-              "query": [
-                {
-                  "key": "customerId",
-                  "value": "8ba4aa81-f6fe-4a22-b4d2-0c6a55444cf0",
-                  "disabled": true
-                },
-                {
-                  "key": "status",
-                  "value": "Recebido",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "04fceae3-4a88-47f4-8c8d-902707cd059e",
+		"name": "orderly",
+		"description": "Github Repository -> [Orderly](https://github.com/tribofustack/orderly)\n\n<img src=\"https://content.pstmn.io/0c106f3c-2daa-4950-81ae-2248f97127d6/dHJpYm9mdXN0YWNrLnBuZw==\">",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13574011"
+	},
+	"item": [
+		{
+			"name": "check-in",
+			"item": [
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "get categories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"const [category,] = pm.response.json();",
+											"const categoryId =  category.id;",
+											"pm.collectionVariables.set(\"categoryId\", categoryId);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/products/category",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"products",
+										"category"
+									]
+								},
+								"description": "Return all categories"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/products/category",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"products",
+												"category"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "407"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"197-LHG0RGnh6Cz+BtgkZkdhFH3z4BQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:28:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"c4f4715c-f56e-4d7e-a949-a286375e869b\",\n        \"name\": \"Lanche\",\n        \"description\": \"Lanches deliciosos\"\n    },\n    {\n        \"id\": \"5dee63d4-1a6a-4e8b-9c54-3f5065a9a17a\",\n        \"name\": \"Acompanhamento\",\n        \"description\": \"Diversos acompanhamentos\"\n    },\n    {\n        \"id\": \"c67c49d5-53fc-4724-a7ca-02842396487c\",\n        \"name\": \"Bebida\",\n        \"description\": \"Sucos refrescantes\"\n    },\n    {\n        \"id\": \"c462c802-45d1-4378-b066-4eeec1974460\",\n        \"name\": \"Sobremesa\",\n        \"description\": \"Delicias saudáveis\"\n    }\n]"
+								}
+							]
+						}
+					],
+					"description": "Categories of products"
+				},
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "create product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const product = pm.response.json();",
+											"const productId =  product.id;",
+											"pm.collectionVariables.set(\"productId\", productId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Sanduiche de pernil\",\n    \"description\": \"Sanduiche com 300g de pernil fresco, maionese caseira e milho\",\n    \"categoryId\": \"{{categoryId}}\",\n    \"price\": 10,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/products",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"products"
+									]
+								},
+								"description": "To create a product is required to use a valid categoryId"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Sanduiche de pernil\",\n    \"description\": \"Sanduiche com 300g de pernil fresco, maionese caseira e milho\",\n    \"categoryId\": \"\",\n    \"price\": 10,\n    \"quantity\": 10\n}"
+										},
+										"url": {
+											"raw": "localhost:3000/products",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "229"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"e5-pz5ezp7FLLMQbBhHYpi/VSHvIOc\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:29:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"c66c86b0-6bf0-4b51-8006-f0a4d7c2d3ce\",\n    \"name\": \"Sanduiche de pernil\",\n    \"description\": \"Sanduiche com 300g de pernil fresco, maionese caseira e milho\",\n    \"categoryId\": \"c4f4715c-f56e-4d7e-a949-a286375e869b\",\n    \"price\": 10,\n    \"quantity\": 10\n}"
+								},
+								{
+									"name": "categoryId not exists",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Sanduiche de pernil\",\n    \"description\": \"Sanduiche com 300g de pernil fresco, maionese caseira e milho\",\n    \"categoryId\": \"{{categoryId}}1\",\n    \"price\": 10,\n    \"quantity\": 10\n}"
+										},
+										"url": {
+											"raw": "{{url}}:{{port}}/products",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"products"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "125"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7d-k1gAThuZjM79nQrgGSgibVf2MCs\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:29:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"error\": \"insert or update on table \\\"products\\\" violates foreign key constraint \\\"products_category_id_fkey\\\"\"\n}"
+								}
+							]
+						},
+						{
+							"name": "edit product",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"X-Salada com bacon\",\n    \"description\": \"Muito tomate, alface e bacon\",\n    \"categoryId\": \"{{categoryId}}\",\n    \"price\": 100\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/products/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"X-Salada com bacon\",\n    \"description\": \"Muito tomate, alface e bacon\",\n    \"categoryId\": \"\",\n    \"price\": 100\n}"
+										},
+										"url": {
+											"raw": "localhost:3000/products/:id",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:30:08 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "remove product",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/products/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/products/:id",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:30:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "get products by category",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/products/category/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"products",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{categoryId}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/products/category/:id",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"products",
+												"category",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "427"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1ab-ErxtMqrAPXSzEpUTdnUVhnKiV80\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:32:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"ee2ac271-1a84-4252-a8ec-d11c950715e2\",\n        \"name\": \"Sanduiche de pernil\",\n        \"description\": \"Sanduiche com 300g de pernil fresco, maionese caseira e milho\",\n        \"categoryId\": \"c4f4715c-f56e-4d7e-a949-a286375e869b\",\n        \"price\": 10,\n        \"quantity\": 10\n    },\n    {\n        \"id\": \"3f1bdd62-003f-4718-9472-39bef97312cb\",\n        \"name\": \"X-Salada com bacon\",\n        \"description\": \"Muito tomate, alface e bacon\",\n        \"categoryId\": \"c4f4715c-f56e-4d7e-a949-a286375e869b\",\n        \"price\": 10,\n        \"quantity\": 10\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "create/identify customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const customer = pm.response.json();",
+											"const customerId =  customer.id;",
+											"pm.collectionVariables.set(\"customerId\", customerId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"name\": \"Robert C. Martin\",\n   \"cpf\": \"123456556\",\n   \"email\": \"robertinho@clean.com\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/customers",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"customers"
+									]
+								},
+								"description": "If customer already exists it will update"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n   \"name\": \"Robert C. Martin\",\n   \"cpf\": \"123456556\",\n   \"email\": \"robertinho@clean.com\"\n}"
+										},
+										"url": {
+											"raw": "localhost:3000/customers",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"customers"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "120"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"78-MlC0KJbwj8ZIM4qXWIGyo+mzums\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:33:03 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"4f693a47-ef6a-4787-bcfe-f5b9bd1753e9\",\n    \"cpf\": \"123456556\",\n    \"name\": \"Robert C. Martin\",\n    \"email\": \"robertinho@clean.com\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get customer by cpf",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/customers/:cpf",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"customers",
+										":cpf"
+									],
+									"variable": [
+										{
+											"key": "cpf",
+											"value": "123456556"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/customers/:cpf",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"customers",
+												":cpf"
+											],
+											"variable": [
+												{
+													"key": "cpf",
+													"value": "123456556"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "120"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"78-MlC0KJbwj8ZIM4qXWIGyo+mzums\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:33:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"4f693a47-ef6a-4787-bcfe-f5b9bd1753e9\",\n    \"cpf\": \"123456556\",\n    \"name\": \"Robert C. Martin\",\n    \"email\": \"robertinho@clean.com\"\n}"
+								},
+								{
+									"name": "customer not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "{{url}}:{{port}}/customers/:cpf",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"customers",
+												":cpf"
+											],
+											"variable": [
+												{
+													"key": "cpf",
+													"value": "12345655"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-hpMcKCbRpLQfw3y0kWRRoPHjU1w\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Jan 2024 16:33:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"error\": \"Customer not found\"\n}"
+								}
+							]
+						}
+					]
+				}
+			],
+			"description": "Modules:\n\n- products\n- categories\n- customers"
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const order = pm.response.json();",
+									"const orderId =  order.id;",
+									"pm.collectionVariables.set(\"orderId\", orderId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"{{customerId}}\",\n    \"products\": [\n        {\n            \"id\": \"{{productId}}\",\n            \"quantity\": 1,\n            \"price\": 100\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/orders",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "To create an order is required to use a valid customerId and valid productId in products"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"\",\n    \"products\": [\n        {\n            \"id\": \"\",\n            \"quantity\": 1,\n            \"price\": 100\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "localhost:3000/orders",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "317"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13d-x5poLLcyqq4/c8wYIuZx7LeQaF0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:34:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d6e50233-5d9c-4549-a33f-67d6224ffd43\",\n    \"customerId\": \"4f693a47-ef6a-4787-bcfe-f5b9bd1753e9\",\n    \"orderItems\": [\n        {\n            \"id\": \"0af0a132-4901-4e46-83cf-d14275441d1d\",\n            \"productId\": \"3f1bdd62-003f-4718-9472-39bef97312cb\",\n            \"value\": 100,\n            \"quantity\": 1,\n            \"total\": 100\n        }\n    ],\n    \"status\": \"Recebido\",\n    \"total\": 100,\n    \"createdAt\": \"2024-01-10T16:34:02.007Z\"\n}"
+						},
+						{
+							"name": "customer not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"1\",\n    \"products\": [\n        {\n            \"id\": \"{{productId}}\",\n            \"quantity\": 1,\n            \"price\": 100\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/orders",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-hpMcKCbRpLQfw3y0kWRRoPHjU1w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:41:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"Customer not found\"\n}"
+						},
+						{
+							"name": "product not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"{{customerId}}\",\n    \"products\": [\n        {\n            \"id\": \"1\",\n            \"quantity\": 1,\n            \"price\": 100\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/orders",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-NLdXDU+yVDGDovIIgyJzOBckgNA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:42:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"product not found.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "prepare order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/orders/:id/prepare",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders",
+								":id",
+								"prepare"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						},
+						"description": "Starting preparation"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/prepare",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"prepare"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:43:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "order not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/prepare",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"prepare"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-jhnEMeCbR7HSxXZmoUzgOVRzuC8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:42:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"order not found\"\n}"
+						},
+						{
+							"name": "order status is invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/prepare",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"prepare"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-ONgQ5FGAaYPaLxcOj9Ix9dPjV6Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:42:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"order status is invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "withdrawn order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/orders/:id/withdrawn",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders",
+								":id",
+								"withdrawn"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						},
+						"description": "It will withdraw order"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/withdrawn",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"withdrawn"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:44:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "order not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/withdrawn",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"withdrawn"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-jhnEMeCbR7HSxXZmoUzgOVRzuC8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:44:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"order not found\"\n}"
+						},
+						{
+							"name": "order status is invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/withdrawn",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"withdrawn"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-ONgQ5FGAaYPaLxcOj9Ix9dPjV6Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:44:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"order status is invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/orders/",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders",
+								""
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "{{customerId}}",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Pronto",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Return all orders"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										""
+									],
+									"query": [
+										{
+											"key": "customerId",
+											"value": "{{customerId}}",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "Pronto",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "332"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14c-cPcifQO2nCqHp4NWKkO9L1duuVo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:45:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"d4f747c2-210e-478c-aecd-126d490f870b\",\n        \"customerId\": \"312ab849-0c5d-474b-a979-0abf829edb52\",\n        \"orderItems\": [\n            {\n                \"id\": \"ab31f2bb-9f37-4af6-b4bf-bbf39541100a\",\n                \"productId\": \"833dfaa9-79d0-4d92-8d8f-dca527c4f0f8\",\n                \"value\": 100,\n                \"quantity\": 1,\n                \"total\": 100\n            }\n        ],\n        \"status\": \"Pendente de pagamento\",\n        \"total\": 100,\n        \"createdAt\": \"2024-01-10T16:44:39.510Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get report by customerId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/orders/customer/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders",
+								"customer",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{customerId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/customer/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										"customer",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{customerId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-ZmgCcw3H/ehftbG4TZhbol48478\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:45:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"purchases\": 2,\n    \"value\": 200\n}"
+						},
+						{
+							"name": "customer not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/customer/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										"customer",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{customerId}}1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-hpMcKCbRpLQfw3y0kWRRoPHjU1w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:45:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"Customer not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/orders/:id/status",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"orders",
+								":id",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/status",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-q/cAJQT2pGbcWvEUuC+BZdw2og4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:45:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Pendente de pagamento\",\n    \"timeToWait\": \"Pedido ainda não foi iniciado.\"\n}"
+						},
+						{
+							"name": "order not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/orders/:id/status",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"orders",
+										":id",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-jhnEMeCbR7HSxXZmoUzgOVRzuC8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:47:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"order not found\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Modules:\n\n- orders\n- order-items"
+		},
+		{
+			"name": "payments",
+			"item": [
+				{
+					"name": "aprove payment by orderId",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/payments/order/:id/approve",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"payments",
+								"order",
+								":id",
+								"approve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create payment and approve order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id/approve",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id",
+										"approve"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:43:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "payment not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id/approve",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id",
+										"approve"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}11"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-mwt7WK2qNHkk1zTfGW0/BMEPQhc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:43:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"payment not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "cancel payment by orderId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/payments/order/:id/cancel",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"payments",
+								"order",
+								":id",
+								"cancel"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id/cancel",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:48:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "payment was approved",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerId\": \"2265250e-f632-4684-860c-5cb4cb91a2c1\",\n    \"products\": [\n        {\n            \"id\": \"bb8e8845-8f06-4594-a8bc-4efd5aa70feb\",\n            \"quantity\": 1,\n            \"price\": 101\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id/cancel",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-elhgATBjxYZu6GECTmQJ0V9rgK8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:49:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"payment was approved\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get payment by orderId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/payments/order/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"payments",
+								"order",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{orderId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "509"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fd-um8YEgNXXOzsGWFhfvZPdgGONaQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:48:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"9323c8b5-8da5-4b2d-a893-30ab1d2ff143\",\n    \"customerId\": \"b1870410-dc99-4c6c-8d93-501220b835a3\",\n    \"orderId\": \"3ff9ef46-78fe-4658-9d80-ec9af5799d38\",\n    \"value\": 100,\n    \"status\": \"Aprovado\",\n    \"paymentType\": \"pix\",\n    \"qrCode\": \"00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b615204000053039865406180.005802BR5911ED34839JJ826009Sao Paulo62230519mpqrinter131657861463048911\",\n    \"url\": \"https://www.mercadopago.com.br/sandbox/payments/1316578614/ticket?caller_id=1632871424&hash=a87ad567-1b86-41ba-b673-a3d3bcb1b8da\"\n}"
+						},
+						{
+							"name": "payment not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}:{{port}}/payments/order/:id",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"payments",
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{orderId}}1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-mwt7WK2qNHkk1zTfGW0/BMEPQhc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 16:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"payment not found\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Modules:\n\n- payments\n    \n- anti-corruption layer"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "3000",
+			"type": "string"
+		},
+		{
+			"key": "categoryId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "productId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "",
+			"type": "string"
+		}
+	]
 }
