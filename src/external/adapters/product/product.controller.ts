@@ -13,7 +13,7 @@ import { UpdateProductDto } from 'src/internal/domain/product/dto/update-product
 import { responseError } from 'src/external/infra/errors/reponse.error';
 
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateProductSwagger, CreatedProductSwagger } from 'src/internal/application/docs/swagger/product/create-product.dto';
+import { CreateProductSwagger, CreatedProductSwagger, EditProductSwagger} from 'src/internal/application/docs/swagger/product/create-product.dto';
 
 @ApiTags('Products')
 @Controller('products')
@@ -33,6 +33,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'Update Product' })
+  @ApiBody({ type: EditProductSwagger })
   @ApiResponse({ status: 201, description: 'Product successfully Updated.' })
   @Put(':id')
   async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {

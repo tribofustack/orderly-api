@@ -31,7 +31,7 @@ export class CustomerController {
     }
   }
 
-  @ApiOperation({ summary: 'Get Customer' })
+  @ApiOperation({ summary: 'Get Customer by CPF' })
   @ApiResponse({
     status: 201,
     description: 'Customer found.',
