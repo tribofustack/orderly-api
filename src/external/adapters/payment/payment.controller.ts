@@ -14,7 +14,6 @@ export class PaymentController {
   @ApiResponse({
     status: 201,
     description: 'Payment successfully created.',
-    // type: CreatedOrderSwagger,
   })
   @Post('order/:id/approve')
   async approve(@Param('id') id: string) {
@@ -30,7 +29,6 @@ export class PaymentController {
   @ApiResponse({
     status: 201,
     description: 'Payment successfully Cancelled.',
-    // type: CreatedOrderSwagger,
   })
   @Delete('order/:id/cancel')
   async cancel(@Param('id') id: string) {
