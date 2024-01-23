@@ -2,7 +2,7 @@ import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CancelPaymentSwagger, CreatePaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
+import { CancelPaymentSwagger, CreatePaymentSwagger, ReturnPaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
 
 @ApiTags('payments')
 @Controller('payments')
@@ -43,9 +43,9 @@ export class PaymentController {
 
   @ApiOperation({ summary: 'Get Order Payment by ID' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Payment successfully Returned.',
-    // type: CreatedOrderSwagger,
+    type: ReturnPaymentSwagger,
   })
   @Get('order/:id')
   async findOne(@Param('id') id: string) {

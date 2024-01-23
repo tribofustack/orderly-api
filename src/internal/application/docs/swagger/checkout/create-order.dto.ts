@@ -57,3 +57,19 @@ export class CreatedOrderSwagger {
   @ApiProperty({ description: 'The total cost of the order.' })
   total: number;
 }
+
+export class ReportByCustomerOrderSwagger {
+  @ApiProperty({ description: 'The number of purchases' })
+  purchases: number;
+
+  @ApiProperty({ description: 'The total amount' })
+  value: number;
+}
+
+export class StatusOrderSwagger {
+  @ApiProperty({ description: 'The number of purchases' })
+  status: string;
+
+  @ApiProperty({ description: 'The total amount' })
+  timeToWait: string;
+}

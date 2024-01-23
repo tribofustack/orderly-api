@@ -4,12 +4,14 @@ import { responseError } from 'src/external/infra/errors/reponse.error';
 import {
   CreateOrderSwagger,
   CreatedOrderSwagger,
+  ReportByCustomerOrderSwagger,
 } from 'src/internal/application/docs/swagger/checkout/create-order.dto';
 import { CreateOrderDto } from 'src/internal/domain/checkout/dto/create-order.dto';
 
 import { ProductsService } from '../product/product.service';
 import { OrdersService } from './order.service';
 import { CustomersService } from '../customer/customer.service';
+
 
 @ApiTags('Order')
 @Controller('orders')
@@ -39,7 +41,7 @@ export class OrderController {
   }
 
   @ApiOperation({ summary: 'Prepare Order' })
-  @ApiResponse({ status: 200 })
+  @ApiResponse({ status: 201 })
   @Post(':orderId/prepare')
   async prepare(@Param('orderId') orderId: string) {
     try {
@@ -50,7 +52,7 @@ export class OrderController {
   }
 
   @ApiOperation({ summary: 'withdrawn' })
-  @ApiResponse({ status: 200 })
+  @ApiResponse({ status: 201 })
   @Post(':orderId/withdrawn')
   async withdrawn(@Param('orderId') orderId: string) {
     try {
@@ -61,7 +63,7 @@ export class OrderController {
   }
 
   @ApiOperation({ summary: 'Get Orders' })
-  @ApiResponse({ status: 201, description: 'Order successfully created.' })
+  @ApiResponse({ status: 20, description: 'Order successfully loaded.' })
   @ApiQuery({
     name: "customerId",
 		description: "Query by customer id.",
@@ -86,6 +88,12 @@ export class OrderController {
     }
   }
 
+  @ApiOperation({ summary: 'Get Order Status' })
+  @ApiResponse({
+    status: 200,
+    description: 'Order status returned.',
+    type: ReportByCustomerOrderSwagger,
+  })
   @Get(':id/status')
   async getStatus(@Param('id') id: string) {
     try {
@@ -95,6 +103,12 @@ export class OrderController {
     }
   }
 
+  @ApiOperation({ summary: 'Create Report' })
+  @ApiResponse({
+    status: 200,
+    description: 'Report successfully created.',
+    type: ReportByCustomerOrderSwagger,
+  })
   @Get('customer/:id')
   async getCustomerReport(@Param('id') id: string) {
     try {
