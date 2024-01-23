@@ -13,7 +13,7 @@ import { UpdateProductDto } from 'src/internal/domain/product/dto/update-product
 import { responseError } from 'src/external/infra/errors/reponse.error';
 
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateProductSwagger, CreatedProductSwagger, EditProductSwagger} from 'src/internal/application/docs/swagger/product/create-product.dto';
+import { CreateProductSwagger, CreatedProductSwagger, EditProductSwagger, LoadedCategoriesSwagger, LoadedProductsByCategorySwagger} from 'src/internal/application/docs/swagger/product/create-product.dto';
 
 @ApiTags('Products')
 @Controller('products')
@@ -34,7 +34,7 @@ export class ProductController {
 
   @ApiOperation({ summary: 'Update Product' })
   @ApiBody({ type: EditProductSwagger })
-  @ApiResponse({ status: 201, description: 'Product successfully Updated.' })
+  @ApiResponse({ status: 200, description: 'Product successfully Updated.' })
   @Put(':id')
   async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     try {
@@ -45,7 +45,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'Delete Product' })
-  @ApiResponse({ status: 201, description: 'Product successfully Deleted.' })
+  @ApiResponse({ status: 200, description: 'Product successfully Deleted.' })
   @Delete(':id')
   async delete(@Param('id') id: string) {
     try {
@@ -56,7 +56,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'Get Product' })
-  @ApiResponse({ status: 200 })
+  @ApiResponse({ status: 200, description: 'products by categories successfully loaded.', type: LoadedProductsByCategorySwagger })
   @Get('category/:id')
   async findByCategory(@Param('id') id: string) {
     try {
@@ -67,7 +67,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'Get Categories' })
-  @ApiResponse({ status: 200 })
+  @ApiResponse({ status: 200, description: 'Categories successfully loaded.', type: LoadedCategoriesSwagger })
   @Get('category/')
   async getCategories() {
     try {

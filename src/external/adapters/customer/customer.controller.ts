@@ -33,7 +33,7 @@ export class CustomerController {
 
   @ApiOperation({ summary: 'Get Customer by CPF' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Customer found.',
     type: GetCustomerSwagger,
   })
