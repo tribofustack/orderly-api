@@ -7,7 +7,7 @@ import { CancelPaymentByOrderId } from '../../../internal/application/useCases/p
 import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
 import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
 
-@ApiTags('payments')
+@ApiTags('PAYMENTS')
 @Controller('payments')
 export class PaymentController {
   constructor(

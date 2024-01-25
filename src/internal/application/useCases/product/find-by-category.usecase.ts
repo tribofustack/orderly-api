@@ -9,7 +9,8 @@ export class FindProductsByCategory {
         private productRepository: IProductRepository,
     ) { }
 
-    async execute(categoryId: string): Promise<Product[]> {
-        return await this.productRepository.findByCategory(categoryId);
+    async execute(categoryId: string): Promise<{ products: Product[] }> {
+        const products = await this.productRepository.findByCategory(categoryId);
+        return { products }
     }
 }

@@ -9,6 +9,7 @@ export class GetProductCategories {
     ) { }
 
     async execute(): Promise<any> {
-        return await this.productRepository.getCategories();
+        const categories = await this.productRepository.getCategories();
+        return { categories }
     }
 }

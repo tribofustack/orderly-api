@@ -17,7 +17,7 @@ import { FindAllOrders } from '../../../internal/application/useCases/checkout/f
 import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
 import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
 
-@ApiTags('Order')
+@ApiTags('ORDERS')
 @Controller('orders')
 export class OrderController {
   constructor(
