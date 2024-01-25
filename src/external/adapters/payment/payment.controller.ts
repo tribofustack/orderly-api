@@ -1,13 +1,20 @@
 import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { PaymentService } from './payment.service';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CancelPaymentSwagger, CreatePaymentSwagger, ReturnPaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
 
+import { CancelPaymentByOrderId } from '../../../internal/application/useCases/payment/cancel-payment.usecase';
+import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
+import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
+
 @ApiTags('payments')
 @Controller('payments')
 export class PaymentController {
-  constructor(private readonly paymentService: PaymentService) {}
+  constructor(
+    private readonly cancelPaymentByOrderId: CancelPaymentByOrderId,
+    private readonly approvePaymentByOrderId: ApprovePaymentByOrderId,
+    private readonly findOnePaymentByOrderId: FindOnePaymentByOrderId
+  ) { }
 
   @ApiOperation({ summary: 'Create Order Payment' })
   @ApiBody({ type: CreatePaymentSwagger })
@@ -18,7 +25,7 @@ export class PaymentController {
   @Post('order/:id/approve')
   async approve(@Param('id') id: string) {
     try {
-      return await this.paymentService.approveByOrderId(id);
+      return await this.approvePaymentByOrderId.execute(id);
     } catch (err) {
       return responseError(err);
     }
@@ -32,8 +39,8 @@ export class PaymentController {
   })
   @Delete('order/:id/cancel')
   async cancel(@Param('id') id: string) {
-    try { 
-      return await this.paymentService.cancelByOrderId(id);
+    try {
+      return await this.cancelPaymentByOrderId.execute(id);
     } catch (err) {
       return responseError(err);
     }
@@ -48,7 +55,7 @@ export class PaymentController {
   @Get('order/:id')
   async findOne(@Param('id') id: string) {
     try {
-      return await this.paymentService.findOneByOrderId(id);
+      return await this.findOnePaymentByOrderId.execute(id);
     } catch (err) {
       return responseError(err);
     }

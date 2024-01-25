@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Query  } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { responseError } from 'src/external/infra/errors/reponse.error';
 import {
@@ -7,20 +7,29 @@ import {
   ReportByCustomerOrderSwagger,
 } from 'src/internal/application/docs/swagger/checkout/create-order.dto';
 import { CreateOrderDto } from 'src/internal/domain/checkout/dto/create-order.dto';
+import { FindCustomerById } from '../../../internal/application/useCases/customer/find-by-id.usecase';
+import { VerifyProductQuantity } from '../../../internal/application/useCases/product/verify-product-quantity.usecase';
 
-import { ProductsService } from '../product/product.service';
-import { OrdersService } from './order.service';
-import { CustomersService } from '../customer/customer.service';
-
+import { CreateOrder } from '../../../internal/application/useCases/checkout/create-order.usecase';
+import { PrepareOrder } from '../../../internal/application/useCases/checkout/prepare-order.usecase';
+import { WithdrawnOrder } from '../../../internal/application/useCases/checkout/withdraw-order-usecase';
+import { FindAllOrders } from '../../../internal/application/useCases/checkout/find-all-orders.usecase';
+import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
+import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
 
 @ApiTags('Order')
 @Controller('orders')
 export class OrderController {
   constructor(
-    private readonly ordersService: OrdersService,
-    private readonly productsService: ProductsService,
-    private readonly customerService: CustomersService,
-  ) {}
+    private readonly createOrder: CreateOrder,
+    private readonly prepareOrder: PrepareOrder,
+    private readonly withdrawnOrder: WithdrawnOrder,
+    private readonly findAllOrders: FindAllOrders,
+    private readonly getOrderStatus: GetOrderStatus,
+    private readonly getCustomerReport: GetCustomerReport,
+    private readonly findCustomerById: FindCustomerById,
+    private readonly verifyProductQuantity: VerifyProductQuantity,
+  ) { }
 
   @ApiOperation({ summary: 'Create Order' })
   @ApiBody({ type: CreateOrderSwagger })
@@ -32,9 +41,9 @@ export class OrderController {
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     try {
-      await this.customerService.findById(createOrderDto.customerId);
-      await this.productsService.verifyProductQuantity(createOrderDto.products);
-      return await this.ordersService.create(createOrderDto);
+      await this.findCustomerById.execute(createOrderDto.customerId);
+      await this.verifyProductQuantity.execute(createOrderDto.products);
+      return await this.createOrder.execute(createOrderDto);
     } catch (err) {
       return responseError(err);
     }
@@ -45,7 +54,7 @@ export class OrderController {
   @Post(':orderId/prepare')
   async prepare(@Param('orderId') orderId: string) {
     try {
-      return await this.ordersService.prepare(orderId);
+      return await this.prepareOrder.execute(orderId);
     } catch (err) {
       return responseError(err);
     }
@@ -56,7 +65,7 @@ export class OrderController {
   @Post(':orderId/withdrawn')
   async withdrawn(@Param('orderId') orderId: string) {
     try {
-      return await this.ordersService.withdrawn(orderId);
+      return await this.withdrawnOrder.execute(orderId);
     } catch (err) {
       return responseError(err);
     }
@@ -66,15 +75,15 @@ export class OrderController {
   @ApiResponse({ status: 20, description: 'Order successfully loaded.' })
   @ApiQuery({
     name: "customerId",
-		description: "Query by customer id.",
-		required: false,
-		type: String
+    description: "Query by customer id.",
+    required: false,
+    type: String
   })
   @ApiQuery({
     name: "status",
-		description: "Query by order status.",
-		required: false,
-		type: String
+    description: "Query by order status.",
+    required: false,
+    type: String
   })
   @Get()
   async getOrders(
@@ -82,7 +91,7 @@ export class OrderController {
     @Query('status') status?: string,
   ) {
     try {
-      return await this.ordersService.findAll(customerId, status);
+      return await this.findAllOrders.execute(customerId, status);
     } catch (err) {
       return responseError(err);
     }
@@ -97,7 +106,7 @@ export class OrderController {
   @Get(':id/status')
   async getStatus(@Param('id') id: string) {
     try {
-      return await this.ordersService.getStatus(id);
+      return await this.getOrderStatus.execute(id);
     } catch (err: any) {
       return responseError(err);
     }
@@ -110,10 +119,10 @@ export class OrderController {
     type: ReportByCustomerOrderSwagger,
   })
   @Get('customer/:id')
-  async getCustomerReport(@Param('id') id: string) {
+  async handleCustomerReport(@Param('id') id: string) {
     try {
-      await this.customerService.findById(id);
-      return await this.ordersService.getCustomerReport(id);
+      await this.findCustomerById.execute(id);
+      return await this.getCustomerReport.execute(id);
     } catch (err: any) {
       return responseError(err);
     }

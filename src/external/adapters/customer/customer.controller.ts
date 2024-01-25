@@ -7,13 +7,17 @@ import {
 } from 'src/internal/application/docs/swagger/customers/create-customer.dto';
 import { GetCustomerSwagger } from 'src/internal/application/docs/swagger/customers/get-customer.dto';
 import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-customer.dto';
-
-import { CustomersService } from './customer.service';
+import { CreateCustomer } from '../../../internal/application/useCases/customer/create-customer.usecase';
+import { FindCustomerByCpf } from '../../../internal/application/useCases/customer/find-by-cpf.usecase';
 
 @ApiTags('Customers')
 @Controller('customers')
 export class CustomerController {
-  constructor(private readonly customersService: CustomersService) {}
+  constructor(
+    private readonly createCustomer: CreateCustomer,
+    private readonly findCustomerByCpf: FindCustomerByCpf,
+  ) {
+  }
 
   @ApiOperation({ summary: 'Create Customer' })
   @ApiBody({ type: CreateCustomerSwagger })
@@ -25,7 +29,7 @@ export class CustomerController {
   @Post()
   async create(@Body() createCustomerDto: CreateCustomerDto) {
     try {
-      return await this.customersService.create(createCustomerDto);
+      return await this.createCustomer.execute(createCustomerDto);
     } catch (err) {
       return responseError(err);
     }
@@ -40,7 +44,7 @@ export class CustomerController {
   @Get(':cpf')
   async getCustomer(@Param('cpf') cpf: string) {
     try {
-      return await this.customersService.findByCpf(cpf);
+      return await this.findCustomerByCpf.execute(cpf);
     } catch (err) {
       return responseError(err);
     }
