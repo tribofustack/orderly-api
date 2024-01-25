@@ -26,6 +26,7 @@ import { WithdrawnOrder } from '../../../internal/application/useCases/checkout/
 import { FindAllOrders } from '../../../internal/application/useCases/checkout/find-all-orders.usecase';
 import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
 import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
+import { PayOrder } from '../../../internal/application/useCases/checkout/pay-order.usecase';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { GetCustomerReport } from '../../../internal/application/useCases/checko
     FindAllOrders,
     GetOrderStatus,
     GetCustomerReport,
+    PayOrder,
     { provide: 'ProductRepository', useExisting: ProductSequelizeRepository },
     { provide: 'OrderRepository', useExisting: OrderSequelizeRepository },
     { provide: 'CustomerRepository', useExisting: CustomerSequelizeRepository },

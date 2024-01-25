@@ -15,6 +15,7 @@ import { PaymentMercadoPago } from 'src/external/infra/payment/payment-mercadopa
 import { CancelPaymentByOrderId } from '../../../internal/application/useCases/payment/cancel-payment.usecase';
 import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
 import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
+import { CreatePayment } from '../../../internal/application/useCases/payment/create-payment.usecase';
 
 @Module({
   imports: [SequelizeModule.forFeature([PaymentModel]), QueueModule],
@@ -30,6 +31,7 @@ import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/
     CancelPaymentByOrderId,
     ApprovePaymentByOrderId,
     FindOnePaymentByOrderId,
+    CreatePayment,
     { provide: 'IdGenerator', useExisting: Uuid },
     { provide: 'PaymentRepository', useExisting: PaymentSequelizeRepository },
     { provide: 'Http', useExisting: AxiosHttp },
