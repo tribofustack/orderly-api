@@ -1,4 +1,4 @@
-<h1 align="center">Orderly API</h1>
+<h1 align="center">Orderly</h1>
 
 <p align="center">
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -15,7 +15,8 @@
 
 ## 💻 Project
 
-Orderly API is a cutting-edge web API designed to streamline operations for restaurant and food businesses (RMS). It draws from the principles of **Domain-Driven Design (DDD)** and **Hexagonal Architecture** to ensure scalability, maintainability, and a robust integration capability.
+
+Orderly is a cutting-edge web system designed to streamline operations for restaurant and food businesses (RMS). It draws from the principles of **Domain-Driven Design (DDD)** and **Architectural Concepts** to ensure scalability, maintainability, and a robust integration capability.
 
 ## ✨ Technologies
 
@@ -26,6 +27,7 @@ This project was built using the following technologies and architectural concep
 - [Docker](https://www.docker.com/)
 - [DDD (Domain-driven Design)](https://domainlanguage.com/)
 - [Hexagonal Architecture](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
+- [Clean Architecture](<https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html>)
 - [Kubernetes](<https://kubernetes.io/>)
 
 ## 🟢 Running
@@ -61,14 +63,12 @@ Once it's up, the Swagger documentation can be accessed at `http://localhost:300
 
 Prerequisites: Ensure you have a tool for running local Kubernetes clusters installed.
 
-## Running kubernetes
+## Running on kubernetes
 
 ```bash
 # create namespace orderly
 $ kubectl create ns orderly
 
-# set orderly namespace to default (IN GCP)
-$ kubens orderly
 # set orderly namespace to default with kubectl
 $ kubectl config set-context --current --namespace=orderly
 
@@ -82,37 +82,21 @@ $ kubectl apply -f k8s/db
 $ kubectl apply -f k8s/api
 ```
 
-### Kubernetes Architecture on GCP
-
-<div align="center">
-  <img src="./.github/k8s-gcp.png" alt="K8S Diagram on GoogleCloud"  width="700"/>
-</div>
-
-### Kubernetes Architecture local
-
   
-⚠️ **Wait** until the pods are ready, you can see the process with this command: ``` sudo kubectl get pods -o wide ```
+⚠️ **Wait** until the pods are ready, you can see the process with this command: ``` kubectl get pods -o wide --watch ```
 
-📌 To get the port you can use this command: ``` sudo kubectl get svc -o wide ```
+📌 By default this will launch the application at port `30000`
 
-  - By default this will launch the application at port `30000`.
+📌 Get the INTERNAL-IP with command: ``` kubectl get nodes -o wide ```
 
-📌 Get the INTERNAL-IP with command: ``` sudo kubectl get nodes -o wide ```
+With the **INTERNAL-IP** the Swagger documentation can be accessed at `<INTERNAL-IP>:30000/`.
 
+<br>
 
-With the **INTERNAL-IP + api-service PORT** the Swagger documentation can be accessed at `<INTERNAL-IP>:30000/`.
-
-<div align="center">
-  <img src="./.github/k8s-local.png" alt="K8S Diagram"  width="700"/>
-</div>
-
-## Database ER Diagram
 
 <div align="center">
-  <img src="./.github/orderly-er-diagram.png" alt="ER Diagram" />
+  <h2>DDD (Domain-Driven Design)</h2>
 </div>
-
-## DDD (Domain-Driven Design)
 
 Domain-Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. Here's a breakdown of how DDD principles have been applied in Orderly:
 
@@ -156,14 +140,101 @@ Domain-Driven Design (DDD) is an approach to developing software for complex nee
 ### Event Storming
 
 <div align="center">
-  <img src="./.github/event-storming.png" alt="Event Storming" />
+  <img src="./.github/event-storming.png" alt="Event Storming" style="border-radius:10px;"/>
 </div>
 
-### Context Map
+
+## Context Map
+
+<p align="center">
+  <a target="blank"><img src="./.github/context-map.png" width="1000" alt="DDD Context Map" style="border-radius:10px;" /></a>
+</p>
+
+<br>
+<div align="center">
+  <h2>Use cases</h2>
+</div>
+
+#### - Labels
+
+<p align="center">
+  <a target="blank"><img src="./.github/labels.png" width="800" alt="Legend" style="border-radius:10px;" /></a>
+</p>
+
+### - Check-in
+
+<p align="center">
+  <a target="blank"><img src="./.github/checkin-usecase.png" height="400" alt="Create order Usecase" style="border-radius:10px;" /></a>
+</p>
+
+### - Create order
+
+<p align="center">
+  <a target="blank"><img src="./.github/create-order-usecase.png" width="1000" alt="Create order Usecase" style="border-radius:10px;" /></a>
+</p>
+
+### - Pay order
+
+<p align="center">
+  <a target="blank"><img src="./.github/approve-payment-usecase.png" width="1000" alt="Pay order Usecase" style="border-radius:10px;" /></a>
+</p>
+
+### - Prepare order
+
+<p align="center">
+  <a target="blank"><img src="./.github/prepare-order-usecase.png" width="1000" alt="Prepare order Usecase" style="border-radius:10px;" /></a>
+</p>
+
+### - Withdrawn order
+
+<p align="center">
+  <a target="blank"><img src="./.github/withdrawn-order-usecase.png" width="1000" alt="Withdrawn order Usecase" style="border-radius:10px;" /></a>
+</p>
+
+<br>
 
 <div align="center">
-  <img src="./.github/context-map.png" alt="Context Map" />
+  <h2>Clean Architecture</h2>
 </div>
+
+<p align="center">
+  <a target="blank"><img src="./.github/clean-arch.png" width="1200" alt="Legend" style="border-radius:10px;" /></a>
+</p>
+
+
+<br>
+
+<div align="center">
+  <h2>Kubernetes Diagram - Infrastructure</h2>
+</div>
+
+### Cloud - Google Cloud Platform
+
+<p align="center">
+  <a target="blank"><img src="./.github/k8s-cloud.png" width="700" alt="Kubernetes diagram on google cloud platform" style="border-radius:10px;" /></a>
+</p>
+
+### Local - Docker Hub
+
+<p align="center">
+  <a target="blank"><img src="./.github/k8s-local.png" width="700" alt="Kubernetes local diagram" style="border-radius:10px;" /></a>
+</p>
+
+<br>
+
+
+
+<div align="center">
+  <h2>Entity Relationship Diagram - Database</h2>
+</div>
+
+<div align="center">
+  <img src="./.github/er-diagram.png" alt="ER Diagram" />
+</div>
+
+<br>
+
+<br> 
 
 ## 📝 License
 
