@@ -8,10 +8,13 @@ import { Uuid } from 'src/external/infra/tokens/uuid/uuid';
 import { CustomerConsumer } from './bullmq/consumers/customer.consumer';
 import { PublishCustomerListener } from './bullmq/listeners/publish-customer.listener';
 import { CustomerController } from './customer.controller';
-import { CustomersService } from './customer.service';
 import { CustomerHttp } from './http/customer-http.adapter';
 import { CustomerSequelizeRepository } from './sequelize/customer-sequelize.repository';
 import { CustomerModel } from './sequelize/customer.model';
+import { CreateCustomer } from '../../../internal/application/useCases/customer/create-customer.usecase';
+import { FindCustomerByCpf } from '../../../internal/application/useCases/customer/find-by-cpf.usecase';
+import { FindCustomerById } from '../../../internal/application/useCases/customer/find-by-id.usecase';
+
 
 @Module({
   imports: [
@@ -26,7 +29,6 @@ import { CustomerModel } from './sequelize/customer.model';
   ],
   controllers: [CustomerController],
   providers: [
-    CustomersService,
     CustomerSequelizeRepository,
     { provide: 'CustomerRepository', useExisting: CustomerSequelizeRepository },
     CustomerHttp,
@@ -36,6 +38,9 @@ import { CustomerModel } from './sequelize/customer.model';
     { provide: 'EventEmitter', useExisting: EventEmitter2 },
     Uuid,
     { provide: 'IdGenerator', useExisting: Uuid },
+    CreateCustomer,
+    FindCustomerByCpf,
+    FindCustomerById
   ],
 })
-export class CustomerModule {}
+export class CustomerModule { }

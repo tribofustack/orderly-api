@@ -14,7 +14,7 @@ export class ProductSequelizeRepository implements IProductRepository {
     private model: typeof ProductModel,
     @InjectModel(CategoryModel)
     private categoryModel: typeof CategoryModel,
-  ) {}
+  ) { }
 
   async createCategories(
     categoriesToCreate: categoriesToCreate,
@@ -50,7 +50,7 @@ export class ProductSequelizeRepository implements IProductRepository {
       where: { categoryId },
     });
     if (!productModel || productModel.length === 0)
-      throw new NotFoundException('product category not exists.');
+      throw new NotFoundException('Category without products');
 
     return productModel.map(pm => {
       return new Product({
