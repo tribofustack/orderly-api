@@ -9,7 +9,8 @@ export class FindAllOrders {
         private orderRepository: IOrderRepository,
     ) { }
 
-    async execute(customerId?: string, status?: string): Promise<Order[]> {
-        return this.orderRepository.findAllWithoutFinishedAndOrderedByStatusAndCreateDate(customerId, status);
+    async execute(customerId?: string, status?: string): Promise<{ orders: Order[] }> {
+        const orders = await this.orderRepository.findAllWithoutFinishedAndOrderedByStatusAndCreateDate(customerId, status);
+        return { orders }
     }
 }

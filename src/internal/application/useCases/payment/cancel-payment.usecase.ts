@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IPaymentRepository } from 'src/internal/domain/payment/repositories/payment.repository';
-import EventEmitter from 'events';
 import { ChangedPaymentStatusEvent } from 'src/internal/domain/payment/events/payment-status-changed.event';
 import { ChangedOrderStatusEvent } from 'src/internal/domain/checkout/events/order-status-changed.event';
 import { DomainException } from 'src/internal/application/errors';
+import { IEventEmitter } from '../../ports/events/event';
 
 @Injectable()
 export class CancelPaymentByOrderId {
@@ -12,7 +12,7 @@ export class CancelPaymentByOrderId {
         private paymentRepository: IPaymentRepository,
 
         @Inject('EventEmitter')
-        private eventEmitter: EventEmitter,
+        private eventEmitter: IEventEmitter,
     ) { }
 
     async execute(orderId: string): Promise<void> {

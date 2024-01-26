@@ -1,13 +1,13 @@
 import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { responseError } from 'src/external/infra/errors/reponse.error';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CancelPaymentSwagger, CreatePaymentSwagger, ReturnPaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
+import {  ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ReturnPaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
 
 import { CancelPaymentByOrderId } from '../../../internal/application/useCases/payment/cancel-payment.usecase';
 import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
 import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
 
-@ApiTags('PAYMENTS')
+@ApiTags('Payments')
 @Controller('payments')
 export class PaymentController {
   constructor(
@@ -17,7 +17,6 @@ export class PaymentController {
   ) { }
 
   @ApiOperation({ summary: 'Create Order Payment' })
-  @ApiBody({ type: CreatePaymentSwagger })
   @ApiResponse({
     status: 201,
     description: 'Payment successfully created.',
@@ -32,7 +31,6 @@ export class PaymentController {
   }
 
   @ApiOperation({ summary: 'Cancel Order Payment' })
-  @ApiBody({ type: CancelPaymentSwagger })
   @ApiResponse({
     status: 201,
     description: 'Payment successfully Cancelled.',

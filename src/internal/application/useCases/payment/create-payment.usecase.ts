@@ -4,9 +4,9 @@ import { Payment } from 'src/internal/domain/payment/entities/payment.entity';
 import { IPaymentRepository } from 'src/internal/domain/payment/repositories/payment.repository';
 import { IPaymentIntegration } from 'src/internal/application/ports/integrations/payment';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
-import EventEmitter from 'events';
 import { CreatedPaymentEvent } from 'src/internal/domain/payment/events/payment-created.event';
 import { DomainException } from 'src/internal/application/errors';
+import { IEventEmitter } from '../../ports/events/event';
 
 @Injectable()
 export class CreatePayment {
@@ -18,7 +18,7 @@ export class CreatePayment {
         private paymentIntegration: IPaymentIntegration,
 
         @Inject('EventEmitter')
-        private eventEmitter: EventEmitter,
+        private eventEmitter: IEventEmitter,
 
         @Inject('IdGenerator')
         private idGenerator: IIdentifierGenerator,
