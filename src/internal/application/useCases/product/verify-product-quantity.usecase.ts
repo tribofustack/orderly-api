@@ -2,8 +2,8 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { VerifyProductDto } from 'src/internal/domain/product/dto/verify-product.dto';
 import { IProductRepository } from 'src/internal/domain/product/repositories/product.repository';
 import { DomainException } from 'src/internal/application/errors';
-import EventEmitter from 'events';
 import { ProductDecreasedEvent } from 'src/internal/domain/product/events/product-decreased.event';
+import { IEventEmitter } from '../../ports/events/event';
 
 @Injectable()
 export class VerifyProductQuantity {
@@ -12,7 +12,7 @@ export class VerifyProductQuantity {
         private productRepository: IProductRepository,
 
         @Inject('EventEmitter')
-        private eventEmitter: EventEmitter,
+        private eventEmitter: IEventEmitter,
     ) { }
 
     async execute(products: VerifyProductDto[]): Promise<void> {

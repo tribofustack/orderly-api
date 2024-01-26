@@ -1,6 +1,7 @@
 import {
   IPaymentIntegration,
   IPaymentResult,
+  IRefreshToken,
 } from 'src/internal/application/ports/integrations/payment';
 import {
   IPayment,
@@ -10,16 +11,6 @@ import { IHttp } from 'src/internal/application/ports/http/http';
 import { Inject, Injectable } from '@nestjs/common';
 import { env } from 'src/internal/application/configs/env';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
-
-interface IRefreshToken {
-  accessToken: string;
-  tokenType: string;
-  expiresIn: number;
-  scope: string;
-  userId: number;
-  refreshToken: string;
-  publicKey: string;
-}
 
 @Injectable()
 export class PaymentMercadoPago implements IPaymentIntegration {

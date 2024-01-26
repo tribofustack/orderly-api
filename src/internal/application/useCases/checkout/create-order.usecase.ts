@@ -5,7 +5,7 @@ import { Order } from 'src/internal/domain/checkout/entities/order.entity';
 import { CreatedOrderEvent } from 'src/internal/domain/checkout/events/order-created.event';
 import { IOrderRepository } from 'src/internal/domain/checkout/repositories/order.repository';
 import { IIdentifierGenerator } from 'src/internal/application/ports/tokens/id-generator';
-import EventEmitter from 'events';
+import { IEventEmitter } from '../../ports/events/event';
 
 @Injectable()
 export class CreateOrder {
@@ -14,7 +14,7 @@ export class CreateOrder {
         private orderRepository: IOrderRepository,
 
         @Inject('EventEmitter')
-        private eventEmitter: EventEmitter,
+        private eventEmitter: IEventEmitter,
 
         @Inject('IdGenerator')
         private idGenerator: IIdentifierGenerator,
@@ -36,9 +36,10 @@ export class CreateOrder {
             customerId: createOrderDto.customerId,
             id: this.idGenerator.generate(),
             orderItems,
+            createdAt: new Date()
         });
 
-        await this.orderRepository.create(order);
+        // await this.orderRepository.create(order);
         this.eventEmitter.emit('order.created', new CreatedOrderEvent(order));
 
         return order;

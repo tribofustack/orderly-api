@@ -19,8 +19,8 @@ export class CreateProductSwagger {
     @ApiProperty({ description: 'The description of the product.' })
     description: string;
 
-    @ApiProperty({ description: 'The category of the product.' })
-    category: string;
+    @ApiProperty({ description: 'The categoryId of the product.' })
+    categoryId: string;
 
     @ApiProperty({ description: 'The price of the product.' })
     price: number;
@@ -56,8 +56,8 @@ export class EditProductSwagger {
     @ApiProperty({ description: 'The description of the product.' })
     description: string;
 
-    @ApiProperty({ description: 'The category of the product.' })
-    category: string;
+    @ApiProperty({ description: 'The categoryId of the product.' })
+    categoryId: string;
 
     @ApiProperty({ description: 'The price of the product.' })
     price: number;

@@ -56,14 +56,25 @@ export class CreatedOrderSwagger {
 
   @ApiProperty({ description: 'The total cost of the order.' })
   total: number;
+
+  @ApiProperty({ description: 'The data of order creation.' })
+  createdAt: string;
+}
+
+export class LoadedOrdersSwagger {
+  @ApiProperty({ 
+      description: 'List of orders.', 
+      type: [CreatedOrderSwagger]
+  })
+  orders: CreatedOrderSwagger[];
 }
 
 export class ReportByCustomerOrderSwagger {
-  @ApiProperty({ description: 'The number of purchases' })
-  purchases: number;
+  @ApiProperty({ description: 'The order status.' })
+  status: string;
 
-  @ApiProperty({ description: 'The total amount' })
-  value: number;
+  @ApiProperty({ description: 'The time and message about time to wait for order.' })
+  timeToWait: string;
 }
 
 export class StatusOrderSwagger {

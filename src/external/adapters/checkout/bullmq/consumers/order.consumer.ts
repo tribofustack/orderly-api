@@ -18,7 +18,7 @@ export class OrderConsumer {
 
       await this.orderRepository.create(order);
     } catch (err: any) {
-      console.error(`\n OrderConsumer: ${err.message}`);
+      console.error(`\n OrderConsumer: ${err}`);
     }
   }
 }

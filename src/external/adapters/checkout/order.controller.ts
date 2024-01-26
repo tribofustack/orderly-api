@@ -4,6 +4,7 @@ import { responseError } from 'src/external/infra/errors/reponse.error';
 import {
   CreateOrderSwagger,
   CreatedOrderSwagger,
+  LoadedOrdersSwagger,
   ReportByCustomerOrderSwagger,
 } from 'src/internal/application/docs/swagger/checkout/create-order.dto';
 import { CreateOrderDto } from 'src/internal/domain/checkout/dto/create-order.dto';
@@ -17,7 +18,7 @@ import { FindAllOrders } from '../../../internal/application/useCases/checkout/f
 import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
 import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
 
-@ApiTags('ORDERS')
+@ApiTags('Orders')
 @Controller('orders')
 export class OrderController {
   constructor(
@@ -51,10 +52,10 @@ export class OrderController {
 
   @ApiOperation({ summary: 'Prepare Order' })
   @ApiResponse({ status: 201 })
-  @Post(':orderId/prepare')
-  async prepare(@Param('orderId') orderId: string) {
+  @Post(':id/prepare')
+  async prepare(@Param('id') id: string) {
     try {
-      return await this.prepareOrder.execute(orderId);
+      return await this.prepareOrder.execute(id);
     } catch (err) {
       return responseError(err);
     }
@@ -62,17 +63,17 @@ export class OrderController {
 
   @ApiOperation({ summary: 'withdrawn' })
   @ApiResponse({ status: 201 })
-  @Post(':orderId/withdrawn')
-  async withdrawn(@Param('orderId') orderId: string) {
+  @Post(':id/withdrawn')
+  async withdrawn(@Param('id') id: string) {
     try {
-      return await this.withdrawnOrder.execute(orderId);
+      return await this.withdrawnOrder.execute(id);
     } catch (err) {
       return responseError(err);
     }
   }
 
   @ApiOperation({ summary: 'Get Orders' })
-  @ApiResponse({ status: 20, description: 'Order successfully loaded.' })
+  @ApiResponse({ status: 200, description: 'Order successfully loaded.',  type: LoadedOrdersSwagger })
   @ApiQuery({
     name: "customerId",
     description: "Query by customer id.",

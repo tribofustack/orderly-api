@@ -10,7 +10,7 @@ import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-cust
 import { CreateCustomer } from '../../../internal/application/useCases/customer/create-customer.usecase';
 import { FindCustomerByCpf } from '../../../internal/application/useCases/customer/find-by-cpf.usecase';
 
-@ApiTags('CUSTOMERS')
+@ApiTags('Customers')
 @Controller('customers')
 export class CustomerController {
   constructor(
