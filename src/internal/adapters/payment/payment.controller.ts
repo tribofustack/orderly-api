@@ -3,9 +3,9 @@ import { responseError } from 'src/external/infra/errors/reponse.error';
 import {  ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ReturnPaymentSwagger } from 'src/internal/application/docs/swagger/payment/create-payment.dto';
 
-import { CancelPaymentByOrderId } from '../../../internal/application/useCases/payment/cancel-payment.usecase';
-import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
-import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
+import { CancelPaymentByOrderId } from '../../application/useCases/payment/cancel-payment.usecase';
+import { ApprovePaymentByOrderId } from '../../application/useCases/payment/approve-payment.usecase';
+import { FindOnePaymentByOrderId } from '../../application/useCases/payment/find-one-payment-by-order.usecase';
 
 @ApiTags('Payments')
 @Controller('payments')

@@ -9,11 +9,11 @@ import { ProductSequelizeRepository } from './sequelize/product-sequelize.reposi
 import { ProductModel } from './sequelize/product.model';
 import { CategoryModel } from './sequelize/category.model';
 import { CategorySeeder } from './sequelize/seeders/category-seeder';
-import { CreateProduct } from '../../../internal/application/useCases/product/create-product.usecase';
-import { DeleteProduct } from '../../../internal/application/useCases/product/delete-product.usecase';
-import { FindProductsByCategory } from '../../../internal/application/useCases/product/find-by-category.usecase';
-import { GetProductCategories } from '../../../internal/application/useCases/product/get-categories.usecase';
-import { UpdateProduct } from '../../../internal/application/useCases/product/update-product.usecase';
+import { CreateProduct } from '../../application/useCases/product/create-product.usecase';
+import { DeleteProduct } from '../../application/useCases/product/delete-product.usecase';
+import { FindProductsByCategory } from '../../application/useCases/product/find-by-category.usecase';
+import { GetProductCategories } from '../../application/useCases/product/get-categories.usecase';
+import { UpdateProduct } from '../../application/useCases/product/update-product.usecase';
 
 @Module({
   imports: [SequelizeModule.forFeature([ProductModel, CategoryModel])],

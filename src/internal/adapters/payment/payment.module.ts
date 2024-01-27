@@ -12,10 +12,10 @@ import QueueModule from 'src/external/infra/queue';
 import { ChangePaymentStatusListener } from './bullmq/listeners/change-payment-status.listener';
 import { PaymentMercadoPago } from 'src/external/infra/payment/payment-mercadopago';
 
-import { CancelPaymentByOrderId } from '../../../internal/application/useCases/payment/cancel-payment.usecase';
-import { ApprovePaymentByOrderId } from '../../../internal/application/useCases/payment/approve-payment.usecase';
-import { FindOnePaymentByOrderId } from '../../../internal/application/useCases/payment/find-one-payment-by-order.usecase';
-import { CreatePayment } from '../../../internal/application/useCases/payment/create-payment.usecase';
+import { CancelPaymentByOrderId } from '../../application/useCases/payment/cancel-payment.usecase';
+import { ApprovePaymentByOrderId } from '../../application/useCases/payment/approve-payment.usecase';
+import { FindOnePaymentByOrderId } from '../../application/useCases/payment/find-one-payment-by-order.usecase';
+import { CreatePayment } from '../../application/useCases/payment/create-payment.usecase';
 
 @Module({
   imports: [SequelizeModule.forFeature([PaymentModel]), QueueModule],

@@ -11,9 +11,9 @@ import { CustomerController } from './customer.controller';
 import { CustomerHttp } from './http/customer-http.adapter';
 import { CustomerSequelizeRepository } from './sequelize/customer-sequelize.repository';
 import { CustomerModel } from './sequelize/customer.model';
-import { CreateCustomer } from '../../../internal/application/useCases/customer/create-customer.usecase';
-import { FindCustomerByCpf } from '../../../internal/application/useCases/customer/find-by-cpf.usecase';
-import { FindCustomerById } from '../../../internal/application/useCases/customer/find-by-id.usecase';
+import { CreateCustomer } from '../../application/useCases/customer/create-customer.usecase';
+import { FindCustomerByCpf } from '../../application/useCases/customer/find-by-cpf.usecase';
+import { FindCustomerById } from '../../application/useCases/customer/find-by-id.usecase';
 
 
 @Module({

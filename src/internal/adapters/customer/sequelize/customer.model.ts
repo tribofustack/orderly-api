@@ -1,6 +1,6 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
-import { ICustomer } from '../../../../internal/domain/customers/entities/customer.entity';
+import { ICustomer } from '../../../domain/customers/entities/customer.entity';
 
 export interface ICustomerModel extends ICustomer {}
 

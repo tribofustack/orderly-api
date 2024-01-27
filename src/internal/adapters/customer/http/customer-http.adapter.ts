@@ -6,7 +6,7 @@ import {
   IHttp,
   IHttpRequest,
   IHttpResponse,
-} from '../../../../internal/application/ports/http/http';
+} from '../../../application/ports/http/http';
 
 const RESOURCE = 'checkin';
 

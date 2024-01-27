@@ -1,13 +1,13 @@
 import { SequelizeModule, SequelizeModuleOptions } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
-import { OrderItemModel } from 'src/external/adapters/checkout/sequelize/order-item-model';
-import { OrderModel } from 'src/external/adapters/checkout/sequelize/order-model';
-import { CustomerModel } from 'src/external/adapters/customer/sequelize/customer.model';
-import { ProductModel } from 'src/external/adapters/product/sequelize/product.model';
+import { OrderItemModel } from 'src/internal/adapters/checkout/sequelize/order-item-model';
+import { OrderModel } from 'src/internal/adapters/checkout/sequelize/order-model';
+import { CustomerModel } from 'src/internal/adapters/customer/sequelize/customer.model';
+import { ProductModel } from 'src/internal/adapters/product/sequelize/product.model';
 import { DatabaseException } from 'src/internal/application/errors';
 
 import { connection } from './connections';
-import { CategoryModel } from 'src/external/adapters/product/sequelize/category.model';
+import { CategoryModel } from 'src/internal/adapters/product/sequelize/category.model';
 
 export const sequelizeModels = [
   CustomerModel,

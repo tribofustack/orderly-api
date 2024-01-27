@@ -1,7 +1,7 @@
 import { Process, Processor } from '@nestjs/bull';
 import { Job } from 'bull';
 import { CreatedOrderEvent } from 'src/internal/domain/checkout/events/order-created.event';
-import { CreatePayment } from '../../../../../internal/application/useCases/payment/create-payment.usecase';
+import { CreatePayment } from '../../../../application/useCases/payment/create-payment.usecase';
 
 @Processor('payments')
 export class PaymentConsumeOrder {

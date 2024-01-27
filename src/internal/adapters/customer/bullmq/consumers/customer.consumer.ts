@@ -3,7 +3,7 @@ import { Inject } from '@nestjs/common';
 import { Job } from 'bull';
 import { IHttp } from 'src/internal/application/ports/http/http';
 
-import { CustomerCreatedEvent } from '../../../../../internal/domain/customers/events/customer-created.event';
+import { CustomerCreatedEvent } from '../../../../domain/customers/events/customer-created.event';
 
 @Processor('customers')
 export class CustomerConsumer {

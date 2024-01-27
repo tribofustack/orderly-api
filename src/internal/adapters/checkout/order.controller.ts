@@ -8,15 +8,15 @@ import {
   ReportByCustomerOrderSwagger,
 } from 'src/internal/application/docs/swagger/checkout/create-order.dto';
 import { CreateOrderDto } from 'src/internal/domain/checkout/dto/create-order.dto';
-import { FindCustomerById } from '../../../internal/application/useCases/customer/find-by-id.usecase';
-import { VerifyProductQuantity } from '../../../internal/application/useCases/product/verify-product-quantity.usecase';
+import { FindCustomerById } from '../../application/useCases/customer/find-by-id.usecase';
+import { VerifyProductQuantity } from '../../application/useCases/product/verify-product-quantity.usecase';
 
-import { CreateOrder } from '../../../internal/application/useCases/checkout/create-order.usecase';
-import { PrepareOrder } from '../../../internal/application/useCases/checkout/prepare-order.usecase';
-import { WithdrawnOrder } from '../../../internal/application/useCases/checkout/withdraw-order-usecase';
-import { FindAllOrders } from '../../../internal/application/useCases/checkout/find-all-orders.usecase';
-import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
-import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
+import { CreateOrder } from '../../application/useCases/checkout/create-order.usecase';
+import { PrepareOrder } from '../../application/useCases/checkout/prepare-order.usecase';
+import { WithdrawnOrder } from '../../application/useCases/checkout/withdraw-order-usecase';
+import { FindAllOrders } from '../../application/useCases/checkout/find-all-orders.usecase';
+import { GetOrderStatus } from '../../application/useCases/checkout/get-order-status.usecase';
+import { GetCustomerReport } from '../../application/useCases/checkout/get-customer-report.usecase';
 
 @ApiTags('Orders')
 @Controller('orders')

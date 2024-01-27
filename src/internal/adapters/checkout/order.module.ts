@@ -18,15 +18,15 @@ import { OrderConsumePayment } from './bullmq/consumers/payment.consumer';
 import { CustomerModel } from '../customer/sequelize/customer.model';
 import { CategoryModel } from '../product/sequelize/category.model';
 import { CustomerSequelizeRepository } from '../customer/sequelize/customer-sequelize.repository';
-import { FindCustomerById } from '../../../internal/application/useCases/customer/find-by-id.usecase';
-import { VerifyProductQuantity } from '../../../internal/application/useCases/product/verify-product-quantity.usecase';
-import { CreateOrder } from '../../../internal/application/useCases/checkout/create-order.usecase';
-import { PrepareOrder } from '../../../internal/application/useCases/checkout/prepare-order.usecase';
-import { WithdrawnOrder } from '../../../internal/application/useCases/checkout/withdraw-order-usecase';
-import { FindAllOrders } from '../../../internal/application/useCases/checkout/find-all-orders.usecase';
-import { GetOrderStatus } from '../../../internal/application/useCases/checkout/get-order-status.usecase';
-import { GetCustomerReport } from '../../../internal/application/useCases/checkout/get-customer-report.usecase';
-import { PayOrder } from '../../../internal/application/useCases/checkout/pay-order.usecase';
+import { FindCustomerById } from '../../application/useCases/customer/find-by-id.usecase';
+import { VerifyProductQuantity } from '../../application/useCases/product/verify-product-quantity.usecase';
+import { CreateOrder } from '../../application/useCases/checkout/create-order.usecase';
+import { PrepareOrder } from '../../application/useCases/checkout/prepare-order.usecase';
+import { WithdrawnOrder } from '../../application/useCases/checkout/withdraw-order-usecase';
+import { FindAllOrders } from '../../application/useCases/checkout/find-all-orders.usecase';
+import { GetOrderStatus } from '../../application/useCases/checkout/get-order-status.usecase';
+import { GetCustomerReport } from '../../application/useCases/checkout/get-customer-report.usecase';
+import { PayOrder } from '../../application/useCases/checkout/pay-order.usecase';
 
 @Module({
   imports: [

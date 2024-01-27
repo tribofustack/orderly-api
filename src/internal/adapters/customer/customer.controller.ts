@@ -7,8 +7,8 @@ import {
 } from 'src/internal/application/docs/swagger/customers/create-customer.dto';
 import { GetCustomerSwagger } from 'src/internal/application/docs/swagger/customers/get-customer.dto';
 import { CreateCustomerDto } from 'src/internal/domain/customers/dto/create-customer.dto';
-import { CreateCustomer } from '../../../internal/application/useCases/customer/create-customer.usecase';
-import { FindCustomerByCpf } from '../../../internal/application/useCases/customer/find-by-cpf.usecase';
+import { CreateCustomer } from '../../application/useCases/customer/create-customer.usecase';
+import { FindCustomerByCpf } from '../../application/useCases/customer/find-by-cpf.usecase';
 
 @ApiTags('Customers')
 @Controller('customers')
