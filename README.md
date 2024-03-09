@@ -43,7 +43,7 @@ Prerequisites: Ensure you have `docker`, `node>=18.16.0` & `npm>=9.5.1` installe
 1. Clone this project:
 
 ```sh
-git clone https://github.com/tribofustack/orderly.git
+git clone https://github.com/tribofustack/orderly-api.git
 ```
 
 2. Configure your environment by creating a `.env` file based on the `.env.example`.
