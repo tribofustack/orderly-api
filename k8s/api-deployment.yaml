@@ -13,39 +13,39 @@ spec:
         app: api
     spec:
       containers:
-      - name: api-container
-        image: dealmachine/orderly:5
-        workingDir: /usr/api
-        resources:
-          requests:
-            memory: "500Mi"
-            cpu: 1
-          limits:
-            memory: "500Mi"
-            cpu: 1
-        ports:
-        - containerPort: 3000
-        envFrom:
-        - configMapRef:
-            name: api-configmap
-        livenessProbe:
-          httpGet:
-            path: /orders
-            port: 3000
-          periodSeconds: 10 # perido de tempo para cada requisição
-          timeoutSeconds: 3 # tempo de espera por requisição
-          failureThreshold: 3 # quantidade de falhas para reiniciar
-          # initialDelaySeconds: # 20 demora para realizar primeira requisição
-        readinessProbe:
-          httpGet:
-            path: /orders
-            port: 3000
-          periodSeconds: 3
-          failureThreshold: 3
-          # initialDelaySeconds: 10
-        startupProbe:
-          httpGet:
-            path: /orders
-            port: 3000
-          periodSeconds: 5
-          failureThreshold: 30
+        - name: api-container
+          image: ${IMAGE_NAME}
+          workingDir: /usr/api
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "512Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "512Mi"
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: api-configmap
+          livenessProbe:
+            httpGet:
+              path: /orders
+              port: 3000
+            periodSeconds: 10 # perido de tempo para cada requisição
+            timeoutSeconds: 3 # tempo de espera por requisição
+            failureThreshold: 3 # quantidade de falhas para reiniciar
+            # initialDelaySeconds: # 20 demora para realizar primeira requisição
+          readinessProbe:
+            httpGet:
+              path: /orders
+              port: 3000
+            periodSeconds: 3
+            failureThreshold: 3
+            # initialDelaySeconds: 10
+          startupProbe:
+            httpGet:
+              path: /orders
+              port: 3000
+            periodSeconds: 5
+            failureThreshold: 30
