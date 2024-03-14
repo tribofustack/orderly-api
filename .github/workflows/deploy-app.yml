@@ -1,0 +1,53 @@
+name: Deploy Apply to
+
+on: [push, workflow_dispatch]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+      DB_HOST: ${{ vars.DB_IP }}
+      DB_USERNAME: ${{ vars.DB_USERNAME}}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: "postgres"
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          export_default_credentials: true
+
+      - name: Configure Docker Client
+        run: |-
+          gcloud auth configure-docker --quiet
+          gcloud auth configure-docker ${{ vars.REGION }}-docker.pkg.dev --quiet
+
+      - name: Publish docker image on Google Artifactory Registry
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/docker-images-rep/app:${{ github.run_id }} .
+          docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/docker-images-rep/app:${{ github.run_id }}
+
+      - name: Authenticate with Google Cloud
+        run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Configure kubectl
+        run: gcloud container clusters get-credentials ${{ vars.prefix }}-${{ vars.PROJECT_ID }}-gke --region ${{ vars.REGION }} --project ${{ vars.PROJECT_ID }}
+
+      - name: Setup k8s configmap
+        working-directory: k8s/
+        run: kubectl apply -f your_manifest.yaml
+
+      - name: Deploy deploymentto GKE
+        working-directory: k8s/
+        run: kubectl apply -f api-deployment.yaml
+
+      - name: Deploy service to GKE
+        working-directory: k8s/
+        run: kubectl apply -f api-service.yaml
