@@ -31,8 +31,8 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/docker-images-rep/app:${{ github.run_id }} .
-          docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/docker-images-rep/app:${{ github.run_id }}
+          docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }} .
+          docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
 
       - name: Authenticate with Google Cloud
         run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_CREDENTIALS }}
