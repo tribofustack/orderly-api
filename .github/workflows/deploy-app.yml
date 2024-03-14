@@ -11,7 +11,8 @@ jobs:
       DB_USERNAME: ${{ vars.DB_USERNAME}}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: "postgres"
-      IMAGE_NAME: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
+      IMAGE_NAME: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app
+      IMAGE_TAG: ${{ github.run_id }}
 
     steps:
       - name: Checkout Repo
@@ -32,8 +33,8 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          docker build -t "$IMAGE_NAME" .
-          docker push "$IMAGE_NAME"
+          docker build -t "$IMAGE_NAME:$IMAGE_TAG" .
+          docker push "$IMAGE_NAME:$IMAGE_TAG"
 
       - name: Configure Kubernetes
         run: gcloud container clusters get-credentials ${{ vars.prefix }}-${{ vars.PROJECT_ID }}-gke --region ${{ vars.ZONE }} --project ${{ vars.PROJECT_ID }}
@@ -47,7 +48,8 @@ jobs:
       - name: Deploy deployment to GKE
         working-directory: k8s/
         run: |
-          export IMAGE_NAME=${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
+          export IMAGE_NAME=${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app
+          export IMAGE_TAG=${{ github.run_id }}
           kubectl apply -f api-configmap.yaml
           kubectl apply -f api-deployment.yaml
           kubectl apply -f api-service.yaml
