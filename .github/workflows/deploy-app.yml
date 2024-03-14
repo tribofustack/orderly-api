@@ -37,9 +37,11 @@ jobs:
       - name: Configure Kubernetes
         run: gcloud container clusters get-credentials ${{ vars.prefix }}-${{ vars.PROJECT_ID }}-gke --region ${{ vars.ZONE }} --project ${{ vars.PROJECT_ID }}
 
-      - name: Install kubectl
+      - name: Install plugins
         working-directory: k8s/
-        run: gcloud components install kubectl
+        run: |
+          gcloud components install kubectl
+          gcloud components install gke-gcloud-auth-plugin
 
       - name: Deploy deployment to GKE
         working-directory: k8s/
