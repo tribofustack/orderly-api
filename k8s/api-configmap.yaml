@@ -3,17 +3,17 @@ kind: ConfigMap
 metadata:
   name: api-configmap
 data:
-  PORT: '3000'
-  NODE_ENV: 'production'
-  DB_HOST: db-service
-  DB_USERNAME: postgres
-  DB_PORT: '5432'
-  DB_PASSWORD: postgres
-  DB_NAME: postgres
+  PORT: "3000"
+  NODE_ENV: "production"
+  DB_HOST: "${{ env.DB_HOST }}" # db-service
+  DB_USERNAME: "${{ env.DB_USERNAME }}" # postgres
+  DB_PORT: "5432"
+  DB_PASSWORD: "${{ env.DB_PASSWORD }}" # postgres
+  DB_NAME: "${{ env.DB_NAME }}" # postgres
   DB_DIALECT: postgres
   CACHE_HOST: cache-service
-  CACHE_PORT: '6379'
-  MP_URL: 'https://api.mercadopago.com'
-  MP_CLIENT_SECRET: 'TEST-5115720587610886-010418-c53a30aeee07e161df5918fcb5fb680c-152047844'
-  MP_GRANT_TYPE: 'refresh_token'
-  MP_REFRESH_TOKEN: 'TG-659879899f59ca0001e6fe8b-152047844'
+  CACHE_PORT: "6379"
+  MP_URL: "https://api.mercadopago.com"
+  MP_CLIENT_SECRET: "TEST-5115720587610886-010418-c53a30aeee07e161df5918fcb5fb680c-152047844"
+  MP_GRANT_TYPE: "refresh_token"
+  MP_REFRESH_TOKEN: "TG-659879899f59ca0001e6fe8b-152047844"
