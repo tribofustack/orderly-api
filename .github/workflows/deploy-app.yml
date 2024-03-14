@@ -11,7 +11,7 @@ jobs:
       DB_USERNAME: ${{ vars.DB_USERNAME}}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: "postgres"
-      IMAGE_NAME: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app
+      IMAGE_NAME: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
       IMAGE_TAG: ${{ github.run_id }}
 
     steps:
