@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: "${{ env.IMAGE_NAME }}"
+          image: $IMAGE_NAME
           workingDir: /usr/api
           resources:
             requests:

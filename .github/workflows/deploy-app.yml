@@ -47,6 +47,7 @@ jobs:
       - name: Deploy deployment to GKE
         working-directory: k8s/
         run: |
+          export IMAGE_NAME=${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
           kubectl apply -f api-configmap.yaml
           kubectl apply -f api-deployment.yaml
           kubectl apply -f api-service.yaml
