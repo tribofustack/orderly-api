@@ -34,12 +34,8 @@ jobs:
           docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }} .
           docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.prefix }}-${{ vars.PROJECT_ID }}/app:${{ github.run_id }}
 
-      - name: Configure kubectl
+      - name: Configure Kubernetes
         run: gcloud container clusters get-credentials ${{ vars.prefix }}-${{ vars.PROJECT_ID }}-gke --region ${{ vars.ZONE }} --project ${{ vars.PROJECT_ID }}
-
-      - name: Setup k8s configmap
-        working-directory: k8s/
-        run: kubectl apply -f your_manifest.yaml
 
       - name: Deploy deploymentto GKE
         working-directory: k8s/
