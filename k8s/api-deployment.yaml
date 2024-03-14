@@ -14,15 +14,15 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: ${IMAGE_NAME}
+          image: dealmachine/orderly:5 #${IMAGE_NAME}
           workingDir: /usr/api
           resources:
             requests:
               memory: "500Mi"
-              cpu: "512Mi"
+              cpu: "0.4"
             limits:
               memory: "500Mi"
-              cpu: "512Mi"
+              cpu: "0.4"
           ports:
             - containerPort: 3000
           envFrom:
