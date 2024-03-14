@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: ${IMAGE_NAME}:${IMAGE_TAG}
+          image: $IMAGE_NAME:$IMAGE_TAG
           workingDir: /usr/api
           resources:
             requests:
