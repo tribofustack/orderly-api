@@ -45,4 +45,4 @@ jobs:
           gcloud components install gke-gcloud-auth-plugin
 
       - name: Deploy configmap to GKE
-        run: kubectl apply -f /k8s
+        run: kubectl apply -f /k8s/
