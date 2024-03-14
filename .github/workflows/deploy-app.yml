@@ -44,10 +44,5 @@ jobs:
           gcloud components install kubectl
           gcloud components install gke-gcloud-auth-plugin
 
-      - name: Deploy deployment to GKE
-        working-directory: k8s/
-        run: kubectl apply -f api-deployment.yaml
-
-      - name: Deploy service to GKE
-        working-directory: k8s/
-        run: kubectl apply -f api-service.yaml
+      - name: Deploy configmap to GKE
+        run: kubectl apply -f /k8s
