@@ -37,7 +37,11 @@ jobs:
       - name: Configure Kubernetes
         run: gcloud container clusters get-credentials ${{ vars.prefix }}-${{ vars.PROJECT_ID }}-gke --region ${{ vars.ZONE }} --project ${{ vars.PROJECT_ID }}
 
-      - name: Deploy deploymentto GKE
+      - name: Install kubectl
+        working-directory: k8s/
+        run: gcloud components install kubectl
+
+      - name: Deploy deployment to GKE
         working-directory: k8s/
         run: kubectl apply -f api-deployment.yaml
 
