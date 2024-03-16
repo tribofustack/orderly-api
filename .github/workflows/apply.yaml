@@ -1,0 +1,38 @@
+name: Apply
+
+on: [push, workflow_dispatch]
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CRED }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Auth GCloud
+        uses: 'google-github-actions/auth@v2.1.2'
+        with:
+            credentials_json: ${{ secrets.GOOGLE_CRED }}
+            export_environment_variables: true
+            create_credentials_file: true
+
+      - name: Set up Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: Use gcloud CLI
+        run: gcloud container clusters list
+
+      - name: Setup Cluster Kubernetes
+        uses: 'google-github-actions/get-gke-credentials@v2'
+        with:
+          cluster_name: ${{ vars.CLUSTER }}
+          location: ${{ vars.ZONE }}
+    
+      - name: Setup Namespace
+        run: kubectl config set-context --current --namespace=orderly
+
+      - name: apply api
+        run: kubectl apply -f k8s/

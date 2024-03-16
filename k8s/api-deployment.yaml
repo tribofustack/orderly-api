@@ -16,13 +16,6 @@ spec:
       - name: api-container
         image: dealmachine/orderly:5
         workingDir: /usr/api
-        resources:
-          requests:
-            memory: "500Mi"
-            cpu: 1
-          limits:
-            memory: "500Mi"
-            cpu: 1
         ports:
         - containerPort: 3000
         envFrom:
