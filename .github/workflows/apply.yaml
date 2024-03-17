@@ -34,5 +34,19 @@ jobs:
       - name: Setup Namespace
         run: kubectl config set-context --current --namespace=orderly
 
+      - name: Create ConfigMap
+        working-directory: k8s/
+        run: |
+          echo "$(cat api-configmap.yaml)" | envsubst | kubectl apply -f -
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_IP: ${{ vars.DB_IP }}
+          DB_USERNAME: ${{ vars.DB_USERNAME }}
+          DB_NAME: ${{ vars.DB_NAME }}
+
+
       - name: apply api
-        run: kubectl apply -f k8s/
+        run: |
+          kubectl apply -f k8s/api-deployment.yaml
+          kubectl apply -f k8s/api-hpa.yaml
+          kubectl apply -f k8s/api-service.yaml
