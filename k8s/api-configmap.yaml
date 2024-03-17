@@ -5,11 +5,11 @@ metadata:
 data:
   PORT: "3000"
   NODE_ENV: "production"
-  DB_HOST: "34.31.179.110" # db-service
-  DB_USERNAME: "postgres-user" # "postgres"
+  DB_HOST: "34.133.243.61" # db-service
+  DB_USERNAME: "tribofustack" # "postgres"
   DB_PORT: "5432"
-  DB_PASSWORD: "postgres-pass" # "postgres"
-  DB_NAME: "orderly-db" # postgres
+  DB_PASSWORD: "tribofustack_tribofustack_tribofustack" # "postgres"
+  DB_NAME: "teste" # postgres
   DB_DIALECT: postgres
   CACHE_HOST: cache-service
   CACHE_PORT: "6379"
