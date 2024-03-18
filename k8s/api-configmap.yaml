@@ -5,11 +5,11 @@ metadata:
 data:
   PORT: "3000"
   NODE_ENV: "production"
-  DB_HOST: "34.31.179.110" # db-service
-  DB_USERNAME: "postgres-user" # "postgres"
+  DB_HOST: "${DB_IP}" # db-service
+  DB_USERNAME: "${DB_USERNAME}" # "postgres"
   DB_PORT: "5432"
-  DB_PASSWORD: "postgres-pass" # "postgres"
-  DB_NAME: "orderly-db" # postgres
+  DB_PASSWORD: "${DB_PASSWORD}" # "postgres"
+  DB_NAME: "${DB_NAME}" # postgres
   DB_DIALECT: postgres
   CACHE_HOST: cache-service
   CACHE_PORT: "6379"
