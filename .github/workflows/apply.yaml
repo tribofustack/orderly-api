@@ -45,7 +45,6 @@ jobs:
         run: |
           docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/repository/app:${{ github.run_id }} .
           docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/repository/app:${{ github.run_id }}
-          us-central1-docker.pkg.dev/teste-orderly/repository
 
       - name: Setup Namespace
         run: kubectl config set-context --current --namespace=orderly
