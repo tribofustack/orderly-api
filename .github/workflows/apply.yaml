@@ -45,6 +45,7 @@ jobs:
         run: |
           docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/repository/app:${{ github.run_id }} .
           docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/repository/app:${{ github.run_id }}
+          us-central1-docker.pkg.dev/teste-orderly/repository
 
       - name: Setup Namespace
         run: kubectl config set-context --current --namespace=orderly
@@ -63,6 +64,6 @@ jobs:
         env:
           IMAGE_NAME: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/repository/app:${{ github.run_id }}
         run: |
-          echo "$(cat api-deployment.yaml)" | envsubst | kubectl apply -f -
+          echo "$(cat k8s/api-deployment.yaml)" | envsubst | kubectl apply -f -
           kubectl apply -f k8s/api-hpa.yaml
           kubectl apply -f k8s/api-service.yaml
