@@ -40,8 +40,8 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.CREDENTIALS }}
         run: |
-          docker build -t ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.PREFIX }}-${{vars.PROJECT_ID}}/app:${{ github.run_id }} .
-          docker push ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.PREFIX }}-${{vars.PROJECT_ID}}/app:${{ github.run_id }}
+          docker build -t ${{ vars.ZONE }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.PREFIX }}-${{vars.PROJECT_ID}}/app:${{ github.run_id }} .
+          docker push ${{ vars.ZONE }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.PREFIX }}-${{vars.PROJECT_ID}}/app:${{ github.run_id }}
 
       - name: Setup Namespace
         run: kubectl config set-context --current --namespace=orderly
