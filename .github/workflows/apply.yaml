@@ -13,15 +13,7 @@ jobs:
 
     steps:
       - name: Checkout Repo
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: actions/checkout@v3
 
       - name: Auth GCloud
         uses: "google-github-actions/auth@v2.1.2"
