@@ -6,6 +6,7 @@ const conn = {
   database: env.dbName,
   username: env.dbUser,
   password: env.dbPassword,
+  schema: env.dbSchema,
   port: env.dbPort,
   logging: false,
   sync: { force: true },
